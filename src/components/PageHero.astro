@@ -1,0 +1,22 @@
+---
+import Kicker from './Kicker.astro';
+
+interface Props {
+  kicker: string;
+  title: string;
+  dotgrid?: boolean;
+}
+const { kicker, title, dotgrid = false } = Astro.props;
+---
+
+<header class:list={['border-b-[3px] border-ink/10', dotgrid && 'dotgrid']}>
+  <div class="mx-auto max-w-[1060px] px-6 pt-14 pb-12">
+    <Kicker>{kicker}</Kicker>
+    <h1 class="mt-4 mb-4 max-w-[16ch] font-display text-5xl font-extrabold leading-[0.98] tracking-tight sm:text-6xl">
+      {title}
+    </h1>
+    <div class="max-w-[56ch] text-lg text-body">
+      <slot />
+    </div>
+  </div>
+</header>
