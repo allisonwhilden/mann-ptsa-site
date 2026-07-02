@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction D — Pep Rally · Mann PTSA stylescape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#EF3E36;--red-dark:#C22B24;--ink:#141414;--paper:#FFF8F2;--peach:#FFE8D6;--white:#fff}
+  *{box-sizing:border-box;margin:0}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  .note{background:var(--ink);color:var(--peach);padding:14px 24px;font-size:14px}
+  .note strong{color:var(--red)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* stripe utilities — the texture story of this direction */
+  .stripes-diag{background:repeating-linear-gradient(-45deg,var(--red) 0 14px,var(--paper) 14px 28px)}
+  .stripes-thin{background:repeating-linear-gradient(-45deg,var(--ink) 0 3px,transparent 3px 12px)}
+  .awning{height:18px;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+    background:repeating-linear-gradient(90deg,var(--red) 0 34px,var(--white) 34px 68px)}
+
+  nav{background:var(--paper)}
+  .nav-in{display:flex;align-items:center;gap:26px;padding:18px 0}
+  .mark{font-family:"Bricolage Grotesque";font-weight:800;font-size:21px;display:flex;align-items:center;gap:10px}
+  .mark .badge{background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:2px 10px;transform:rotate(-4deg);box-shadow:3px 3px 0 var(--ink)}
+  .links{display:flex;gap:22px;margin-left:auto}
+  .links a{color:var(--ink);font-weight:800;font-size:15px;text-decoration:none}
+  .btn{display:inline-block;background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 var(--ink);padding:11px 24px;font-weight:800;text-decoration:none;font-size:15.5px;transition:transform .06s}
+  .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+  .btn.white{background:#fff;color:var(--ink)}
+
+  /* bunting pennants under the nav */
+  .bunting{display:flex;justify-content:center;gap:6px;padding:0 24px;filter:drop-shadow(0 3px 0 rgba(20,20,20,.9))}
+  .flag{width:34px;height:30px;clip-path:polygon(0 0,100% 0,50% 100%)}
+  .flag:nth-child(odd){background:var(--red)}
+  .flag:nth-child(even){background:var(--ink)}
+  .flag:nth-child(3n){background:var(--peach)}
+
+  .hero{padding:56px 0 60px;position:relative}
+  .hero-card{border:3px solid var(--ink);border-radius:24px;background:var(--white);box-shadow:7px 7px 0 var(--ink);overflow:hidden}
+  .hero-stripe-top{height:16px;background:repeating-linear-gradient(-45deg,var(--red) 0 16px,var(--white) 16px 32px);border-bottom:3px solid var(--ink)}
+  .hero-in{padding:44px 48px 48px;position:relative}
+  .kicker{display:inline-block;background:var(--peach);border:2px solid var(--ink);border-radius:999px;padding:6px 16px;font-weight:800;font-size:13px;margin-bottom:16px;box-shadow:2px 2px 0 var(--ink)}
+  h1{font-family:"Bricolage Grotesque";font-weight:800;font-size:clamp(42px,7vw,72px);line-height:.96;letter-spacing:-.02em;max-width:15ch}
+  h1 .under{position:relative;white-space:nowrap}
+  h1 .under::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:12px;z-index:-1;
+    background:repeating-linear-gradient(-45deg,var(--red) 0 8px,var(--peach) 8px 16px)}
+  .hero p{font-size:18.5px;max-width:52ch;margin:18px 0 26px;color:#3E3730}
+  .cta{display:flex;gap:16px;flex-wrap:wrap}
+  .megaphone{position:absolute;right:40px;top:40px;font-size:64px;transform:rotate(8deg);filter:drop-shadow(4px 4px 0 var(--ink))}
+
+  section{padding:52px 0}
+  h2{font-family:"Bricolage Grotesque";font-weight:800;font-size:32px;margin-bottom:24px;display:flex;align-items:center;gap:14px}
+  h2 .tick{flex:1;height:10px;background:repeating-linear-gradient(90deg,var(--ink) 0 10px,transparent 10px 20px);opacity:.25;border-radius:5px}
+
+  /* ticket-stub event cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .ticket{background:var(--white);border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);position:relative;overflow:hidden}
+  .ticket::before,.ticket::after{content:"";position:absolute;width:22px;height:22px;background:var(--paper);border:3px solid var(--ink);border-radius:50%;top:58px}
+  .ticket::before{left:-14px}
+  .ticket::after{right:-14px}
+  .t-head{padding:14px 20px;border-bottom:3px dashed var(--ink);display:flex;justify-content:space-between;align-items:center;background:var(--peach)}
+  .t-head .d{font-family:"Bricolage Grotesque";font-weight:800;font-size:15px;color:var(--red-dark)}
+  .t-head .adm{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.55}
+  .t-body{padding:18px 20px 20px}
+  .t-body h3{font-family:"Bricolage Grotesque";font-size:19px;font-weight:700;margin-bottom:6px}
+  .t-body p{font-size:14.5px;color:#4A443D;margin-bottom:10px}
+  .t-body a{color:var(--red-dark);font-weight:800;font-size:14px;text-decoration:none}
+
+  .band{border:3px solid var(--ink);border-radius:24px;box-shadow:6px 6px 0 var(--ink);color:#fff;padding:40px;display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden;background:var(--red)}
+  .band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,#0000 0 26px,#00000014 26px 52px)}
+  .band>*{position:relative}
+  .band h2{color:#fff;margin:0 0 6px}
+  .band p{color:#FFD9CF;max-width:44ch}
+
+  .spec{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+  .swatches{display:flex;gap:10px}
+  .sw{width:74px;height:74px;border-radius:14px;border:3px solid var(--ink);display:flex;align-items:flex-end;padding:6px;font-size:10.5px;color:#fff}
+  footer{border-top:3px solid var(--ink);margin-top:48px}
+  .foot-in{background:var(--ink);color:#E8DFD5;padding:30px 0;font-size:14px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}.spec{grid-template-columns:1fr}.links{display:none}.megaphone{display:none}.hero-in{padding:30px 24px 34px}}
+</style>
+</head>
+<body>
+<div class="note"><strong>Direction D · “Pep Rally.”</strong> Colt Energy + game-day texture: awning stripes, pennant bunting, ticket-stub cards. The stripes do the decorating so photos are optional.</div>
+
+<nav><div class="wrap nav-in">
+  <span class="mark"><span class="badge">GO COLTS</span> Mann PTSA</span>
+  <span class="links"><a href="#">Start Here</a><a href="#">Events</a><a href="#">Volunteer</a><a href="#">Give</a><a href="#">Directory</a></span>
+  <a class="btn" href="#">Join!</a>
+</div></nav>
+<div class="awning"></div>
+<div class="bunting" aria-hidden="true">
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+</div>
+
+<header class="hero"><div class="wrap">
+  <div class="hero-card">
+    <div class="hero-stripe-top"></div>
+    <div class="hero-in">
+      <span class="megaphone" aria-hidden="true">📣</span>
+      <span class="kicker">🐴 Horace Mann Elementary · Redmond</span>
+      <h1>Rally the <span class="under">whole herd.</span></h1>
+      <p>Carnival, movie nights, art docents, math challenges — powered by families like yours. Join for $15, or just show up and help.</p>
+      <div class="cta"><a class="btn" href="#">Join the PTSA</a><a class="btn white" href="#">What's coming up</a></div>
+    </div>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Coming up <span class="tick"></span></h2>
+  <div class="cards">
+    <div class="ticket"><div class="t-head"><span class="d">TUE · SEP 15</span><span class="adm">Admit all</span></div><div class="t-body"><h3>Back-to-School Night</h3><p>Meet your teachers, find your people. PTSA table by the gym doors.</p><a href="#">Details →</a></div></div>
+    <div class="ticket"><div class="t-head"><span class="d">FRI · SEP 25</span><span class="adm">Admit all</span></div><div class="t-body"><h3>Movie Night on the Field</h3><p>Blankets, popcorn, and a family favorite under the stars.</p><a href="#">Details →</a></div></div>
+    <div class="ticket"><div class="t-head"><span class="d">THU · OCT 22</span><span class="adm">Admit all</span></div><div class="t-body"><h3>Membership Meeting</h3><p>Library + Zoom, 6:00 pm. Childcare provided. Kids welcome.</p><a href="#">Details →</a></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="band">
+    <div><h2>Be a Colt. It's $15.</h2><p>Two minutes to join. A whole year of classroom grants, free events, and “I know that family!” moments.</p></div>
+    <a class="btn white" href="#">Join now</a>
+  </div>
+</div></section>
+
+<section><div class="wrap spec">
+  <div>
+    <h2>Type</h2>
+    <p style="font-family:'Bricolage Grotesque';font-weight:800;font-size:34px;line-height:1.05">Bricolage Grotesque — same loud, friendly voice</p>
+    <p style="margin-top:12px;font-size:17px">Inter body. New here: stripes as texture — awnings, dashed ticket edges, striped underlines.</p>
+  </div>
+  <div>
+    <h2>Palette</h2>
+    <div class="swatches">
+      <div class="sw" style="background:#EF3E36">#EF3E36</div>
+      <div class="sw" style="background:#C22B24">#C22B24</div>
+      <div class="sw" style="background:#141414">#141414</div>
+      <div class="sw" style="background:#FFE8D6;color:#7A6A58">#FFE8D6</div>
+      <div class="sw" style="background:#FFF8F2;color:#7A6A58">#FFF8F2</div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="awning"></div><div class="foot-in"><div class="wrap">Horace Mann Elementary PTSA 2.8.37 · Redmond, WA · A 501(c)(3) nonprofit</div></div></footer>
+</body>
+</html>
