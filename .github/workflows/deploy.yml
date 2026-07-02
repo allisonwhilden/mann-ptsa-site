@@ -25,6 +25,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Remove these two once the custom domain (mannptsa.org) is attached
+          ASTRO_SITE: https://allisonwhilden.github.io
+          ASTRO_BASE: /mann-ptsa-site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
