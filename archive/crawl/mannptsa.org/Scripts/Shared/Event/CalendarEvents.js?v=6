@@ -1,0 +1,15 @@
+﻿$(document).ready(function () {
+    $(".CalendarTable .EventsRow td>div").mouseenter(function () {
+        $(this).addClass("EventHover");
+    }).mouseleave(
+    function () {
+        $(this).removeClass("EventHover");
+    });
+
+    $(".CalendarTable .DateRow td").mouseenter(function () {
+        $(this).find("a").fadeIn('fast');
+    }).mouseleave(
+    function () {
+        $(this).find("a").fadeOut('fast');
+    });
+});

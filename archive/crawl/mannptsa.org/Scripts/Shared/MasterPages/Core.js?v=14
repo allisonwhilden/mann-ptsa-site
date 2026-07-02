@@ -1,0 +1,820 @@
+﻿var cache = [];
+
+$(document).ready(function () {
+    InitializeAll($(document));
+});
+
+function InitializeAll(scope)
+{
+    if (typeof (InitializeDataGrid) == typeof (Function))
+    {
+        InitializeDataGrid(scope);
+    }
+
+    if (typeof (InitializeCore) == typeof (Function))
+    {
+        InitializeCore(scope);
+    }
+
+    if (typeof (InitializeVolunteerPositionDropDown) == typeof (Function))
+    {
+        InitializeVolunteerPositionDropDown(scope);
+    }
+
+    if (typeof (InitializeTeacherDropDown) == typeof (Function))
+    {
+        InitializeTeacherDropDown(scope);
+    }
+
+    if (typeof (InitializeMenuItemEditor) == typeof (Function))
+    {
+        InitializeMenuItemEditor(scope);
+    }
+
+    if (typeof (InitializeProductDropDown) == typeof (Function))
+    {
+        InitializeProductDropDown(scope);
+    }
+
+    if (typeof (InitializeOrderItem) == typeof (Function))
+    {
+        InitializeOrderItem(scope);
+    }
+
+    if (typeof (InitializePtaSynchronizeButton) == typeof (Function))
+    {
+        InitializePtaSynchronizeButton(scope);
+    }
+
+    if (typeof (InitializeMembershipSettingsRow) == typeof (Function))
+    {
+        InitializeMembershipSettingsRow(scope);
+    }
+
+    if (typeof (InitializeStudentReadingLog) == typeof (Function))
+    {
+        InitializeStudentReadingLog(scope);
+    }
+
+    if (typeof (InitializeDynamicRepeater) == typeof (Function))
+    {
+        InitializeDynamicRepeater(scope);
+    }
+
+    if (typeof (InitializeFileManager) == typeof (Function))
+    {
+        InitializeFileManager(scope);
+    }
+
+    if (typeof (InitializeFileUpload) == typeof (Function))
+    {
+        InitializeFileUpload(scope);
+    }
+
+    if (typeof (InitializeImagesAndLinksDialog) == typeof (Function))
+    {
+        InitializeImagesAndLinksDialog(scope);
+    }
+
+    if (typeof (InitializeDropDownCheckboxList) == typeof (Function))
+    {
+        InitializeDropDownCheckboxList(scope);
+    }
+
+    if (typeof (InitializeDirectorySearchBox) == typeof (Function))
+    {
+        InitializeDirectorySearchBox(scope);
+    }
+
+    if (typeof (InitializeUsersReport) == typeof (Function)) {
+        InitializeUsersReport(scope);
+    }
+}
+
+function InitializeIfExists(initFunction, scope)
+{
+    if ($.isFunction(initFunction))
+    {
+        initFunction(scope);
+    }
+}
+
+// Arguments are image paths relative to the current page.
+function preLoadImages()
+{
+    var args_len = arguments.length;
+    for (var i = args_len; i--; )
+    {
+        var cacheImage = document.createElement('img');
+        cacheImage.src = arguments[i];
+        cache.push(cacheImage);
+    }
+}
+
+function textAreaUseMarkdown(textValue) {
+    return textValue && textValue.substr(0, "usemarkdown".length).toLowerCase() === "usemarkdown";
+}
+
+// Position popup appropriately relative to another control.
+function displayPopup($hoverDiv, $relativeTo, leftOffset, topOffset) {
+
+    var $hoverParentDiv = $relativeTo;
+    var $positionedRelativeDiv = $hoverDiv.parents(".PositionRelative").first();
+
+    var parentLeftPosition = $hoverParentDiv.offset().left - $positionedRelativeDiv.offset().left;
+    var parentTopPosition = $hoverParentDiv.offset().top - $positionedRelativeDiv.offset().top;
+
+    $hoverDiv.css('left', (parentLeftPosition + leftOffset) + 'px');
+    $hoverDiv.css('top', (parentTopPosition + topOffset) + 'px');
+
+    $hoverDiv.fadeIn('fast');
+}
+
+// Position popup appropriately relative to parent.
+function displayHoverDiv(hoverDiv)
+{
+    var $hoverDiv = $(hoverDiv);
+    var $hoverParentDiv = $hoverDiv.parent();
+    var $hoverRelativeToParentDiv = $hoverDiv.parents(".PositionRelative").first();
+
+    var parentLeftPosition = $hoverParentDiv.offset().left - $hoverRelativeToParentDiv.offset().left;
+    var parentTopPosition = $hoverParentDiv.offset().top - $hoverRelativeToParentDiv.offset().top;
+
+    // Position the callout relative to its parent.  If the parent's absolute
+    // position is less than 500, put the callout to the right of the parent.
+    // Otherwise put the callout to the left of the parent.
+    if ($hoverParentDiv.offset().left < 500)
+    {
+        $hoverDiv.css('left', (parentLeftPosition + $hoverParentDiv.width() - 10) + 'px');
+    }
+    else
+    {
+        $hoverDiv.css('left', (parentLeftPosition - $hoverDiv.width() + 10) + 'px');
+    }
+
+    $hoverDiv.css('top', (parentTopPosition - ($hoverDiv.height() / 2)) + 'px');
+
+    $hoverDiv.show();
+}
+
+function InitializeCore(scope)
+{
+    $(".FullBox, .HalfBox", scope).each(function ()
+    {
+        var title = $(this).attr("data-HeaderText");
+        if (title == undefined)
+        {
+            title = "";
+        }
+
+        if (title.length == 0)
+        {
+            var $headerDiv = $("<div class='NoHeader'>&nbsp;</div>");
+        }
+        else
+        {
+            var $headerDiv = $("<div class='OuterBoxHeader'><div class='InnerBoxHeader'>" + title + "</div></div>");
+        }
+
+        $(this).prepend($headerDiv);
+    });
+
+    $(".AdminDeleteButton", scope).click(function ()
+    {
+        return confirm('Are you sure you wish to delete this?');
+    });
+
+    // Set "src" attribute on all "img" tags within "a" tags, based on 
+    // the rootpath custom attribute.  Also preload the images.
+    $("a>img, input[type='image']", scope).each(function ()
+    {
+        if ($(this).attr("rootpath") != undefined)
+        {
+            $(this).attr("src", $(this).attr("rootpath") + "Normal.png");
+            preLoadImages($(this).attr("rootpath") + "Normal.png");
+            preLoadImages($(this).attr("rootpath") + "Hover.png");
+
+            // Create the rollover effects for all image links and buttons.
+            $(this).mouseenter(function ()
+            {
+                $(this).attr("src", $(this).attr("rootpath") + "Hover.png");
+            }).mouseleave(
+            function ()
+            {
+                $(this).attr("src", $(this).attr("rootpath") + "Normal.png");
+            });
+        }
+    });
+
+    // Set up safe email links.
+    $(".EmailLink", scope).each(function ()
+    {
+        var emailAddress = '';
+
+        $(this).find("span").each(function ()
+        {
+            emailAddress = emailAddress + $(this).html();
+        });
+
+        $(this).empty();
+        $(this).prepend("<a href='mailto:" + emailAddress + "'>" + emailAddress + "</a>");
+    });
+
+    $(".Information, .WideInformation, .HelpInformation, .HelpWideInformation, .UrlInformation", scope).each(function ()
+    {
+        // Make sure we're not inside a repeater template.
+        if ($(this).parents(".RepeaterTemplateDiv").length > 0)
+        {
+            return;
+        }
+
+        var html = $(this).html();
+
+        $(this).empty();
+
+        if ($(this).hasClass("HelpInformation") || $(this).hasClass("HelpWideInformation"))
+        {
+            $(this).append("<img src='/Images/Shared/Icons/HelpLight.gif' />");
+        }
+        else if ($(this).hasClass("UrlInformation"))
+        {
+            $(this).append("<img src='/Images/Shared/Icons/Document.gif' />");
+        }
+        else
+        {
+            $(this).append("<img src='/Images/Shared/Icons/SmallInfo.gif' />");
+        }
+
+        var $calloutDiv =
+            $("<div class='CalloutDiv HoverDiv'></div>")
+                .appendTo(this)
+                .append("<div class='CalloutTopDiv'></div>")
+                .append("<div class='CalloutMiddleDiv'>" + html + "</div>")
+                .append("<div class='CalloutBottomDiv'></div>");
+
+        if (($(this).hasClass("WideInformation")) || ($(this).hasClass("UrlInformation")) || ($(this).hasClass("HelpWideInformation")))
+        {
+            $calloutDiv.addClass("CalloutWideDiv");
+        }
+
+        $(this).css('display', 'inline');
+    });
+
+    $(".HoverDiv", scope).each(function ()
+    {
+        var hoverDiv = this;
+        var $hoverDiv = $(hoverDiv);
+        var $hoverParentDiv = $hoverDiv.parent();
+        var $hoverRelativeToParentDiv = $hoverDiv.parents(".PositionRelative").first();
+
+        /* Delay the fade-in animation of the tooltip */
+        var setTimer = function ()
+        {
+            // Global variable.
+            pendingHover = hoverDiv;
+
+            $hoverParentDiv.showCalloutTimer = setTimeout("displayHoverDiv(pendingHover);", 500);
+        }
+
+        var stopTimer = function ()
+        {
+            clearTimeout($hoverParentDiv.showCalloutTimer);
+        }
+
+        $hoverParentDiv.mouseenter(function ()
+        {
+            setTimer();
+        }).mouseleave(
+        function ()
+        {
+            stopTimer();
+            $hoverDiv.hide();
+        });
+
+        if ($hoverDiv.hasClass("ImagePreviewDiv"))
+        {
+            $hoverParentDiv.mouseenter(function ()
+            {
+                $image = $(this).find(".ImagePreviewDiv img");
+
+                // If this is a lazy load img tag, set its src now.
+                var lazysrc = $image.attr("lazysrc");
+
+                if ((lazysrc != undefined) && (lazysrc != ""))
+                {
+                    $image.attr("src", lazysrc);
+                    $image.attr("lazysrc", "");
+                }
+            });
+        }
+    });
+
+    $('textarea.tinymce', scope).each(function () {
+
+        tinymce.init({
+
+            selector: "#" + $(this).attr('id'),
+
+            // General options
+            // theme: "modern",
+
+            plugins:
+                "lists advlist autolink charmap code emoticons fullscreen hr image link anchor paste table template textcolor visualblocks visualchars",
+
+            menubar: "edit insert view format table",
+            toolbar1: "undo redo | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link anchor image | code",
+            toolbar2: "styleselect | bold italic underline | fontselect fontsizeselect forecolor backcolor",
+            contextmenu: "link image inserttable | cell row column | cellbordercolormenuitem | deletetable",
+            content_style:
+                "@import url('https://fonts.googleapis.com/css?family=Roboto|Tangerine|Open+Sans');",
+            image_advtab: true,
+            browser_spellcheck: true,
+
+            paste_data_images: false,
+
+            convert_urls: false,
+
+            resize: "both",
+
+            font_formats:
+				'Andale Mono=andale mono,times;' +
+				'Arial=arial,helvetica,sans-serif;' +
+				'Arial Black=arial black,avant garde;' +
+				'Book Antiqua=book antiqua,palatino;' +
+                'Century Gothic=Futura,Century Gothic,AppleGothic,sans-serif;' +
+				'Comic Sans MS=comic sans ms,sans-serif;' +
+				'Courier New=courier new,courier;' +
+				'Georgia=georgia,palatino;' +
+				'Helvetica=helvetica;' +
+				'Impact=impact,chicago;' +
+                'Open Sans=Open Sans;' +
+                'Roboto=Roboto;' +
+				'Symbol=symbol;' +
+                'Tangerine=Tangerine;' +
+				'Tahoma=tahoma,arial,helvetica,sans-serif;' +
+                'Terminal=terminal,monaco;' +
+				'Times New Roman=times new roman,times;' +
+				'Trebuchet MS=trebuchet ms,geneva;' +
+				'Verdana=verdana,geneva;' +
+				'Webdings=webdings;' +
+				'Wingdings=wingdings,zapf dingbats',
+
+            fontsize_formats: "8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 30pt 36pt 48pt 72pt",
+
+            style_formats: [
+				{title: 'Headers', items: [
+					{title: 'Header 1', format: 'h1'},
+					{title: 'Header 2', format: 'h2'},
+					{title: 'Header 3', format: 'h3'},
+					{title: 'Header 4', format: 'h4'},
+					{title: 'Header 5', format: 'h5'},
+					{title: 'Header 6', format: 'h6'}
+				]},
+
+				{title: 'Inline', items: [
+					{title: 'Bold', icon: 'bold', format: 'bold'},
+					{title: 'Italic', icon: 'italic', format: 'italic'},
+					{title: 'Underline', icon: 'underline', format: 'underline'},
+					{title: 'Strikethrough', icon: 'strikethrough', format: 'strikethrough'},
+					{title: 'Superscript', icon: 'superscript', format: 'superscript'},
+					{title: 'Subscript', icon: 'subscript', format: 'subscript'},
+					{title: 'Code', icon: 'code', format: 'code'}
+				]},
+
+				{title: 'Blocks', items: [
+					{title: 'Paragraph', format: 'p'},
+					{title: 'Blockquote', format: 'blockquote'},
+					{title: 'Div', format: 'div'},
+					{title: 'Pre', format: 'pre'}
+				]},
+
+				{title: 'Alignment', items: [
+					{title: 'Left', icon: 'alignleft', format: 'alignleft'},
+					{title: 'Center', icon: 'aligncenter', format: 'aligncenter'},
+					{title: 'Right', icon: 'alignright', format: 'alignright'},
+					{title: 'Justify', icon: 'alignjustify', format: 'alignjustify'}
+				]},
+            ],
+
+            formats: {
+                customformat: { inline: 'span', styles: { color: '#00ff00', fontSize: '20px' }, attributes: { title: 'My custom format' } },
+                cellbackcolor: { selector: 'td', styles: { backgroundColor: '%value' } },
+                cellbordercolor: { selector: 'td', styles: { borderColor: '%value', borderWidth: '1px', borderStyle: 'solid' } }
+            },
+
+            table_default_styles: { 'width': '100%' },
+            table_style_by_css: true,
+            
+            // textcolor_rows: 18,
+            color_cols: 12,
+            color_map: [
+                "993366", "",
+                "CC6699", "",
+                "FF99CC", "",
+                "FF0099", "",
+                "990066", "",
+                "CC3399", "",
+                "FF66CC", "",
+                "CC0099", "",
+                "FF33CC", "",
+                "FF00CC", "",
+                "FF00FF", "",
+                "CC00CC", "",
+                "FF33FF", "",
+                "990099", "",
+                "CC33CC", "",
+                "FF66FF", "",
+                "660066", "",
+                "993399", "",
+                "CC66CC", "",
+                "FF99FF", "",
+                "330033", "",
+                "663366", "",
+                "996699", "",
+                "CC99CC", "",
+                "FFCCFF", "",
+                "CC00FF", "",
+                "9900CC", "",
+                "CC33FF", "",
+                "660099", "",
+                "9933CC", "",
+                "CC66FF", "",
+                "9900FF", "",
+                "330066", "",
+                "663399", "",
+                "9966CC", "",
+                "CC99FF", "",
+                "6600CC", "",
+                "9933FF", "",
+                "6600FF", "",
+                "330099", "",
+                "6633CC", "",
+                "9966FF", "",
+                "3300CC", "",
+                "6633FF", "",
+                "3300FF", "",
+                "0000FF", "",
+                "0000CC", "",
+                "000099", "",
+                "000066", "",
+                "000033", "",
+                "3333FF", "",
+                "3333CC", "",
+                "333399", "",
+                "333366", "",
+                "6666FF", "",
+                "6666CC", "",
+                "666699", "",
+                "9999FF", "",
+                "9999CC", "",
+                "CCCCFF", "",
+                "0033FF", "",
+                "0033CC", "",
+                "3366FF", "",
+                "003399", "",
+                "3366CC", "",
+                "6699FF", "",
+                "0066FF", "",
+                "0066CC", "",
+                "3399FF", "",
+                "003366", "",
+                "336699", "",
+                "6699CC", "",
+                "99CCFF", "",
+                "0099FF", "",
+                "006699", "",
+                "3399CC", "",
+                "66CCFF", "",
+                "0099CC", "",
+                "33CCFF", "",
+                "00CCFF", "",
+                "00FFFF", "",
+                "00CCCC", "",
+                "009999", "",
+                "006666", "",
+                "003333", "",
+                "33FFFF", "",
+                "33CCCC", "",
+                "339999", "",
+                "336666", "",
+                "66FFFF", "",
+                "66CCCC", "",
+                "669999", "",
+                "99FFFF", "",
+                "99CCCC", "",
+                "CCFFFF", "",
+                "00FFCC", "",
+                "00CC99", "",
+                "33FFCC", "",
+                "009966", "",
+                "33CC99", "",
+                "66FFCC", "",
+                "00FF99", "",
+                "006633", "",
+                "339966", "",
+                "66CC99", "",
+                "99FFCC", "",
+                "00CC66", "",
+                "33FF99", "",
+                "00FF66", "",
+                "009933", "",
+                "33CC66", "",
+                "66FF99", "",
+                "00CC33", "",
+                "33FF66", "",
+                "00FF33", "",
+                "00FF00", "",
+                "00CC00", "",
+                "009900", "",
+                "006600", "",
+                "003300", "",
+                "33FF33", "",
+                "33CC33", "",
+                "339933", "",
+                "336633", "",
+                "66FF66", "",
+                "66CC66", "",
+                "669966", "",
+                "99FF99", "",
+                "99CC99", "",
+                "CCFFCC", "",
+                "33FF00", "",
+                "33CC00", "",
+                "66FF33", "",
+                "339900", "",
+                "66CC33", "",
+                "99FF66", "",
+                "66FF00", "",
+                "66CC00", "",
+                "99FF33", "",
+                "336600", "",
+                "669933", "",
+                "99CC66", "",
+                "CCFF99", "",
+                "99FF00", "",
+                "669900", "",
+                "99CC33", "",
+                "CCFF66", "",
+                "99CC00", "",
+                "CCFF33", "",
+                "CCFF00", "",
+                "FFFF00", "",
+                "CCCC00", "",
+                "999900", "",
+                "666600", "",
+                "333300", "",
+                "FFFF33", "",
+                "CCCC33", "",
+                "999933", "",
+                "666633", "",
+                "FFFF66", "",
+                "CCCC66", "",
+                "999966", "",
+                "FFFF99", "",
+                "CCCC99", "",
+                "FFFFCC", "",
+                "FFCC00", "",
+                "CC9900", "",
+                "FFCC33", "",
+                "996600", "",
+                "CC9933", "",
+                "FFCC66", "",
+                "FF9900", "",
+                "663300", "",
+                "996633", "",
+                "CC9966", "",
+                "FFCC99", "",
+                "CC6600", "",
+                "FF9933", "",
+                "FF6600", "",
+                "993300", "",
+                "CC6633", "",
+                "FF9966", "",
+                "CC3300", "",
+                "FF6633", "",
+                "FF3300", "",
+                "FF0000", "",
+                "CC0000", "",
+                "990000", "",
+                "660000", "",
+                "330000", "",
+                "FF3333", "",
+                "CC3333", "",
+                "993333", "",
+                "663333", "",
+                "FF6666", "",
+                "CC6666", "",
+                "996666", "",
+                "FF9999", "",
+                "CC9999", "",
+                "FFCCCC", "",
+                "FF0033", "",
+                "CC0033", "",
+                "FF3366", "",
+                "990033", "",
+                "CC3366", "",
+                "FF6699", "",
+                "FF0066", "",
+                "CC0066", "",
+                "FF3399", "",
+                "660033", "",
+                "FFFFFF", "",
+                "CCCCCC", "",
+                "999999", "",
+                "666666", "",
+                "333333", "",
+                "000000", "",
+            ],
+
+            // Example content CSS (should be your site CSS)
+            content_css: ($(this).hasClass("Property_HtmlEmailBody") ? "/Styles/Shared/MasterPages/EmailCore.css" : "/Styles/Shared/MasterPages/Core.css"),
+
+            // This option is to allow inline <style> blocks, technically not W3C compliant, but browsers seem
+            // to support it anyway.  And it's very useful.
+            valid_children: "+body[style]",
+
+            file_picker_callback: function (callback, value, meta) {
+                BrowseForImagesAndLinks(meta.filetype, false, function (newUrl) {
+                    if (newUrl) {
+                        callback(newUrl);
+                    }
+                });
+            }
+        });
+    });
+
+    $('.DatePicker', scope).datepicker();
+
+    $('.TimePicker', scope).timepicker
+        (
+            {
+                ampm: true,
+                timeFormat: "h:mm TT"
+            }
+        );
+
+    $('.ColorPicker', scope).each(function ()
+    {
+        $(this).spectrum(
+        {
+            preferredFormat: "rgb",
+            showInput: true,
+            clickoutFiresChange: true
+        }
+        );
+    });
+
+    $('.PopulateLinkButton').click(function () {
+        var $insertLinkButton = $(this);
+        BrowseForImagesAndLinks("file", true, function (newUrl) {
+            if (newUrl) {
+                var $input = $insertLinkButton.siblings("input");
+                $input.val(newUrl)
+            }
+        });
+
+        return false;
+    });
+
+    $('.InsertLinkButton').click(function ()
+    {
+        var $insertLinkButton = $(this);
+        BrowseForImagesAndLinks("file", $insertLinkButton.attr("data-usevirtualpath") == "True", function (newUrl)
+        {
+            if (newUrl)
+            {
+                var insertString = "[[text to display: " + newUrl + "]] ";
+
+                var $textarea = $insertLinkButton.siblings("textarea");
+                var cursorPos = $textarea.prop('selectionStart');
+                var oldValue = $textarea.val();
+                if (textAreaUseMarkdown(oldValue)) {
+                    insertString = " [text to display](" + newUrl + ") ";
+                }
+                var textBefore = oldValue.substring(0, cursorPos);
+                var textAfter = oldValue.substring(cursorPos, oldValue.length);
+                $textarea.val(textBefore + insertString + textAfter);
+                var newCursorPos = cursorPos + insertString.length;
+                $textarea.prop('selectionStart', newCursorPos);
+                $textarea.prop('selectionEnd', newCursorPos);
+                $textarea[0].focus();
+            }
+        });
+
+        return false;
+    });
+
+    $('.InsertImageButton').click(function () {
+        var $insertLinkButton = $(this);
+        BrowseForImagesAndLinks("image", $insertLinkButton.attr("data-usevirtualpath") == "True", function (newUrl) {
+            if (newUrl) {
+                var insertString = "[[image alt text: " + newUrl + "]] ";
+
+                var $textarea = $insertLinkButton.siblings("textarea");
+                var cursorPos = $textarea.prop('selectionStart');
+                var oldValue = $textarea.val();
+                if (textAreaUseMarkdown(oldValue)) {
+                    insertString = " ![image alt text](" + newUrl + '){width="100%"} ';
+                }
+                var textBefore = oldValue.substring(0, cursorPos);
+                var textAfter = oldValue.substring(cursorPos, oldValue.length);
+                $textarea.val(textBefore + insertString + textAfter);
+                var newCursorPos = cursorPos + insertString.length;
+                $textarea.prop('selectionStart', newCursorPos);
+                $textarea.prop('selectionEnd', newCursorPos);
+                $textarea[0].focus();
+            }
+        });
+
+        return false;
+    });
+
+    $('.PreviewMarkdownButton').click(function () {
+        var $previewButton = $(this);
+        var $textarea = $previewButton.siblings("textarea");
+        var previewId = "#osp_mkdown_div_" + $textarea.attr('id');
+        var oldValue = $textarea.val();
+        if (textAreaUseMarkdown(oldValue)) {
+            $.post("/DataImport/ConvertMarkdown", { text: $textarea.val() }, function (data, status) {
+                var previewDiv = $(previewId);
+                if (previewDiv) {
+                    previewDiv.html(data)
+                }
+            });
+        } else {
+            var previewDiv = $(previewId);
+            if (previewDiv) {
+                previewDiv.html("First line of text need to be <b>UseMarkdown</b> to activate Markdown");
+            }
+        }
+    });
+
+    $('.PreviewMarkdownButton', scope).each(function () {
+        var $previewButton = $(this);
+        var $textarea = $previewButton.siblings("textarea");
+        var oldValue = $textarea.val();
+        if (textAreaUseMarkdown(oldValue)) {
+            $previewButton.click();
+        }
+    });
+
+    $('.TabControl').tabs({ heightStyle: 'content' });
+
+    $('.Property_NameOrEmail', scope).each(function () {
+
+        if (!$(this).parents(".RepeaterTemplateDiv").length) {
+            $(this).autocomplete({
+                source: '/Account/AutocompleteUserNameOrEmail',
+                minLength: 3
+            });
+        }
+    });
+
+    $('.ModalDialog', scope).dialog({
+        autoOpen: false,
+        modal: true
+    });
+
+    $('#GlobalMessageBox', scope).dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        title: "Message",
+        closeText: "OK",
+        buttons:
+        {
+            "OK": function () { $(this).dialog("close"); }
+        }
+    });
+
+    $('#GlobalConfirmBox', scope).dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        title: "Confirm",
+        closeText: "OK",
+        buttons:
+        {
+            "Cancel": function () { $(this).attr("Confirm", "No"); $(this).dialog("close"); },
+            "Confirm": function () { $(this).attr("Confirm", "Yes"); $(this).dialog("close"); }
+        },
+        open: function (event, ui) {
+            $(this).attr("Confirm", "No")
+        }
+    });
+
+    // Move the modal dialog back into the form.  jQuery moved it out.
+    $('.ModalDialog', scope).parent().appendTo($('form:first'));
+
+    $('.SlideShow', scope).each(function () {
+        var timeout = parseInt($(this).attr("data-timeout"));
+        if (isNaN(timeout)) {
+            timeout = 4000;
+        }
+
+        $(this).cycle({
+            fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+            timeout: timeout
+        });
+    });
+}

@@ -1,0 +1,25 @@
+﻿.ProgressBarOutline
+{
+	border: 1px solid #a0a0a0; 
+	width: 150px; 
+	height: 16px; 
+	padding: 1px;
+	margin-right: 5px;
+	float: left;
+}
+
+.ProgressBar
+{
+	background-image: url(../../../Images/Shared/ProgressBar/ProgressBarBackground.gif); 
+	background-repeat: repeat-x;
+	height: 16px;
+}
+
+.ProgressBarText
+{
+	font-weight: bold;
+	font-size: 12px;
+	font-family: Arial, Sans-Serif;
+	color: #404040;
+	float: left;
+}

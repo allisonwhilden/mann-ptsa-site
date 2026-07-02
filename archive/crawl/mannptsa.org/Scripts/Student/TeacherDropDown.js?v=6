@@ -1,0 +1,31 @@
+﻿function InitializeTeacherDropDown(scope)
+{
+    $("select.GradeLevelDropDown", scope).change(function ()
+    {
+        var $gradeLevelDropDown = $(this);
+        var $teacherDropDown = $gradeLevelDropDown.parent().parent().find(".TeacherDropDown");
+
+        if ($teacherDropDown.length)
+        {
+            $.get
+            (
+                "/Account/TeacherDropDown",
+                { gradeLevel: $(this).val() },
+                function (data)
+                {
+                    $teacherDropDown.find("option").each(function ()
+                    {
+                        var classroomID = parseInt($(this).val());
+                        if (classroomID > 0)
+                        {
+                            $(this).remove();
+                        }
+                    });
+
+                    $teacherDropDown.append($(data).find(".TeacherDropDown").html());
+                },
+                "html"
+            );
+        }
+    });
+}

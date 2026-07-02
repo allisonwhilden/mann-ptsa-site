@@ -1,0 +1,82 @@
+﻿.CampaignGroupInfoEntry {
+}
+
+.CampaignGroupName {
+	padding-top: 10px;
+}
+
+.CampaignGroupTotalAmount {
+	/* Your custom CSS styles here */
+	flex: 45%;
+}
+
+.CampaignTotalFamily {
+	/* Your custom CSS styles here */
+	flex: 45%;
+}
+
+.CampaignGroupTargetAmount {
+	/* Your custom CSS styles here */
+}
+
+.CampaignDisplayEntryContainer {
+	padding-top: 10px;
+}
+
+.CampaignDisplayDonor {
+	/* Your custom CSS styles here */
+}
+
+.Campaign-Progress-Bar {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #cccccc;
+}
+
+.Campaign-Progress-Percent {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #4fd000;
+	text-align: center;
+}
+
+	.Campaign-Progress-Percent span {
+		display: inline-block;
+	}
+
+.CampaignDisplaySummaryContainer {
+	display: flex;
+}
+
+.CampaignGroupInfoDivTop {
+	border-top: 1px solid #A0A0A0;
+}
+
+.CampaignDisplayEntryInfoDiv {
+	padding-top: 10px;
+	border-bottom: 1px solid #A0A0A0;
+	display: flex;
+}
+
+.CampaignGroupInfoViewDetailDiv {
+	padding-top: 10px;
+}
+
+.CampaignDisplayDonorName {
+	flex: 45%;
+}
+
+.CampaignDisplayDonorAmount {
+	flex: 50%;
+	text-align: right;
+}
+
+.CampaignDisplayDonorPadding {
+	flex: 5%;
+}
+
+.CampaignGroupTotalAmountNumber {
+	font-size: 1.875em;
+}

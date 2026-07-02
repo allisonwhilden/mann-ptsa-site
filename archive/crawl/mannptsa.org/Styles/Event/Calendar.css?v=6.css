@@ -1,0 +1,16 @@
+﻿#CalendarNavigationDiv a img
+{
+	border-style: none;
+}
+
+#CalendarNavigationDiv
+{
+	float:right; 
+	padding-bottom: 3px;
+	padding-right: 20px;
+}
+
+#MonthAndYearDiv
+{
+	margin-left: 155px;
+}

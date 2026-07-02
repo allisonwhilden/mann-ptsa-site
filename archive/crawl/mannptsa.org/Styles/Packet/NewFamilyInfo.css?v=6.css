@@ -1,0 +1,134 @@
+﻿.NewParentInfoDiv
+{
+    float:left; 
+    border-right: 1px solid #A0A0A0; 
+    padding: 0px 0px 10px 7px;
+}
+        
+#NewStudentInfoDiv
+{
+    margin: 20px 0px 10px 10px;
+}
+
+.FamilyMemberCardDiv
+{
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 10px;
+    color: Black;
+    margin: 0px 8px 10px 0px;
+}
+
+.FamilyMemberCardDiv .HeaderDiv
+{
+    color: White;
+    text-align: center;
+}
+
+.FamilyMemberCardDiv .NameDiv
+{
+    font-size: 14pt;
+    font-weight: bold;
+    line-height: 1.3em;
+    padding: 0px 0px 3px 0px;
+}
+
+.FamilyMemberCardDiv .EmailDiv
+{
+    font-size: 11pt;
+    font-weight: normal;
+    line-height: 1.3em;
+    padding: 0px 0px 3px 0px;
+}
+
+.FamilyMemberCardDiv table
+{
+    margin-top: 5px;
+}
+
+.FamilyMemberCardDiv td
+{
+    color: Black;
+    font-size: 8pt;
+}
+
+.FamilyMemberCardDiv td.FieldName
+{
+    font-weight: bold;
+}
+
+.FamilyMemberCardDiv .ButtonsDiv
+{
+    margin: 10px 0px 5px 10px;
+}
+
+.FamilyMemberCardDiv .ButtonsDiv a
+{
+    color: Black;
+    text-decoration: none;
+    width: 60px;
+    display: inline-block;
+    padding: 0px 3px 3px 3px;
+    font-size: 8pt;
+    vertical-align: middle;
+}
+
+.FamilyMemberCardDiv .ButtonsDiv a img
+{
+    vertical-align: middle;
+}
+
+.FamilyMemberCardDiv .ButtonsDiv a:hover
+{
+    background-color: #d0d0d0;
+    cursor: pointer;
+}
+
+.ParentInfoCardDiv 
+{
+    width: 320px;
+    border: 5px solid #603F76;
+    background-color: #D8CCE0;
+}
+
+.ParentInfoCardDiv .HeaderDiv
+{
+    background-color: #603F76;
+}
+
+.ParentInfoCardDiv .ButtonsDiv a
+{
+    border: 1px solid #603F76;
+    background-color: #E9DEF1;
+}
+
+.StudentInfoCardDiv 
+{
+    width: 240px;
+    border: 5px solid #D8A900;
+    background-color: #F3E1A0;
+}
+
+.StudentInfoCardDiv .HeaderDiv
+{
+    background-color: #D8A900;
+}
+
+.StudentInfoCardDiv a.EmptyField
+{
+    color: Red;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 12pt;
+}
+
+.StudentInfoCardDiv a.EmptyField:hover
+{
+    text-decoration: underline;
+}
+
+.StudentInfoCardDiv .ButtonsDiv a
+{
+    border: 1px solid #D8A900;
+    background-color: #FFF3C6;
+}
