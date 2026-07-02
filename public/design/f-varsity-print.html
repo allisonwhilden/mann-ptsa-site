@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction F — Varsity Print · Mann PTSA stylescape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#EF3E36;--red-dark:#C22B24;--ink:#141414;--paper:#FFF8F2;--peach:#FFE8D6;--white:#fff}
+  *{box-sizing:border-box;margin:0}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  .note{background:var(--ink);color:var(--peach);padding:14px 24px;font-size:14px}
+  .note strong{color:var(--red)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* halftone + stripe textures — the print story */
+  .halftone{background-image:radial-gradient(circle,var(--ink) 1.6px,transparent 1.7px);background-size:11px 11px;opacity:.14}
+  .rules{height:12px;background:repeating-linear-gradient(0deg,var(--ink) 0 3px,transparent 3px 6px)}
+
+  nav{border-bottom:3px solid var(--ink);background:var(--paper)}
+  .nav-in{display:flex;align-items:center;gap:26px;padding:16px 0}
+  .mark{font-family:"Bricolage Grotesque";font-weight:800;font-size:21px;display:flex;align-items:center;gap:10px}
+  .mark .badge{background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:2px 10px;transform:rotate(-4deg);box-shadow:3px 3px 0 var(--ink)}
+  .links{display:flex;gap:22px;margin-left:auto}
+  .links a{color:var(--ink);font-weight:800;font-size:15px;text-decoration:none}
+  .btn{display:inline-block;background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 var(--ink);padding:11px 24px;font-weight:800;text-decoration:none;font-size:15.5px;transition:transform .06s}
+  .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+  .btn.white{background:#fff;color:var(--ink)}
+  .btn.ink{background:var(--ink);color:var(--peach)}
+
+  .hero{padding:64px 0 60px;position:relative;overflow:hidden}
+  .hero .ht{position:absolute;right:-60px;top:-40px;width:420px;height:420px;border-radius:50%}
+  .kicker{display:inline-block;background:var(--ink);color:var(--peach);border-radius:6px;padding:6px 14px;font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  /* misregistered screenprint headline */
+  h1{font-family:"Bricolage Grotesque";font-weight:800;font-size:clamp(46px,7.5vw,80px);line-height:.94;letter-spacing:-.02em;max-width:13ch;position:relative}
+  h1 .misreg{color:var(--ink);text-shadow:4px 4px 0 var(--red);}
+  h1 .outline{color:transparent;-webkit-text-stroke:2.5px var(--ink)}
+  .hero p{font-size:19px;max-width:50ch;margin:20px 0 28px;color:#3E3730}
+  .cta{display:flex;gap:16px;flex-wrap:wrap}
+  .est{position:absolute;right:60px;bottom:40px;font-family:"Bricolage Grotesque";font-weight:800;font-size:120px;color:transparent;-webkit-text-stroke:3px var(--ink);opacity:.22;transform:rotate(-6deg)}
+
+  section{padding:54px 0}
+  h2{font-family:"Bricolage Grotesque";font-weight:800;font-size:32px;margin-bottom:24px}
+  h2 .no{display:inline-grid;place-items:center;width:40px;height:40px;border:3px solid var(--ink);border-radius:50%;background:var(--red);color:#fff;font-size:18px;box-shadow:3px 3px 0 var(--ink);margin-right:12px;vertical-align:-8px}
+
+  /* jersey-numbered event cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:22px;position:relative;overflow:hidden}
+  .card .num{position:absolute;right:10px;top:2px;font-family:"Bricolage Grotesque";font-weight:800;font-size:74px;color:transparent;-webkit-text-stroke:2px var(--peach);z-index:0}
+  .card>*{position:relative}
+  .date{display:inline-block;background:var(--ink);color:var(--peach);border-radius:8px;padding:5px 11px;font-weight:800;font-size:12.5px;margin-bottom:12px}
+  .card h3{font-family:"Bricolage Grotesque";font-size:19px;font-weight:700;margin-bottom:6px}
+  .card p{font-size:14.5px;color:#4A443D;margin-bottom:8px}
+  .card a{color:var(--red-dark);font-weight:800;font-size:14px;text-decoration:none}
+
+  /* black varsity band with red stripe seams */
+  .band{background:var(--ink);border-radius:24px;box-shadow:6px 6px 0 var(--red);color:#fff;padding:44px;display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+  .band::before,.band::after{content:"";position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(90deg,var(--red) 0 30px,var(--peach) 30px 60px)}
+  .band::before{top:0}.band::after{bottom:0}
+  .band h2{color:#fff;margin:0 0 6px}
+  .band p{color:#CFC5BB;max-width:44ch}
+  .band .price{font-family:"Bricolage Grotesque";color:var(--red);text-shadow:2px 2px 0 var(--peach)}
+
+  .spec{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+  .swatches{display:flex;gap:10px}
+  .sw{width:74px;height:74px;border-radius:14px;border:3px solid var(--ink);display:flex;align-items:flex-end;padding:6px;font-size:10.5px;color:#fff}
+  footer{background:var(--ink);color:#E8DFD5;padding:0 0 30px;margin-top:52px;font-size:14px}
+  footer .rules{background:repeating-linear-gradient(0deg,var(--red) 0 3px,transparent 3px 6px);margin-bottom:26px}
+  @media(max-width:780px){.cards{grid-template-columns:1fr}.spec{grid-template-columns:1fr}.links{display:none}.est{display:none}.hero .ht{width:240px;height:240px}}
+</style>
+</head>
+<body>
+<div class="note"><strong>Direction F · “Varsity Print.”</strong> Colt Energy, screenprinted: misregistered ink headlines, halftone dots, jersey numbers, a black varsity band. The most grown-up of the three — the fun is in the printing, not the tilt.</div>
+
+<nav><div class="wrap nav-in">
+  <span class="mark"><span class="badge">GO COLTS</span> Mann PTSA</span>
+  <span class="links"><a href="#">Start Here</a><a href="#">Events</a><a href="#">Volunteer</a><a href="#">Give</a><a href="#">Directory</a></span>
+  <a class="btn" href="#">Join!</a>
+</div></nav>
+
+<header class="hero">
+  <div class="ht halftone" aria-hidden="true"></div>
+  <span class="est" aria-hidden="true">PTSA</span>
+  <div class="wrap">
+    <span class="kicker">Horace Mann Elementary · Redmond, WA</span>
+    <h1><span class="misreg">Home of</span><br><span class="outline">the Colts.</span></h1>
+    <p>Classroom grants, art docents, math nights, and the best carnival in Redmond — printed, stapled, and run by families like yours.</p>
+    <div class="cta"><a class="btn" href="#">Join the PTSA</a><a class="btn ink" href="#">What's coming up</a></div>
+  </div>
+</header>
+
+<section><div class="wrap">
+  <h2><span class="no">01</span>Coming up</h2>
+  <div class="cards">
+    <div class="card"><span class="num">15</span><span class="date">TUE · SEP 15</span><h3>Back-to-School Night</h3><p>Meet your teachers, find your people. PTSA table by the gym doors.</p><a href="#">Details →</a></div>
+    <div class="card"><span class="num">25</span><span class="date">FRI · SEP 25</span><h3>Movie Night on the Field</h3><p>Blankets, popcorn, and a family favorite under the stars.</p><a href="#">Details →</a></div>
+    <div class="card"><span class="num">22</span><span class="date">THU · OCT 22</span><h3>Membership Meeting</h3><p>Library + Zoom, 6:00 pm. Childcare provided. Kids welcome.</p><a href="#">Details →</a></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="band">
+    <div><h2>Suit up. It's <span class="price">$15</span>.</h2><p>Two minutes to join. A whole year of classroom grants, free events, and “I know that family!” moments.</p></div>
+    <a class="btn" href="#">Join now</a>
+  </div>
+</div></section>
+
+<section><div class="wrap spec">
+  <div>
+    <h2><span class="no">02</span>Type</h2>
+    <p style="font-family:'Bricolage Grotesque';font-weight:800;font-size:34px;line-height:1.05;text-shadow:3px 3px 0 #EF3E36">Bricolage, printed off-register</p>
+    <p style="margin-top:12px;font-size:17px">Inter body. New here: halftone dots, outline type, jersey numbers, red-on-black varsity sections.</p>
+  </div>
+  <div>
+    <h2><span class="no">03</span>Palette</h2>
+    <div class="swatches">
+      <div class="sw" style="background:#EF3E36">#EF3E36</div>
+      <div class="sw" style="background:#C22B24">#C22B24</div>
+      <div class="sw" style="background:#141414">#141414</div>
+      <div class="sw" style="background:#FFE8D6;color:#7A6A58">#FFE8D6</div>
+      <div class="sw" style="background:#FFF8F2;color:#7A6A58">#FFF8F2</div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="rules"></div><div class="wrap">Horace Mann Elementary PTSA 2.8.37 · Redmond, WA · A 501(c)(3) nonprofit</div></footer>
+</body>
+</html>
