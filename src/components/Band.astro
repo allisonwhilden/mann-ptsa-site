@@ -2,10 +2,10 @@
 /** Red call-to-action band. One per page, usually near the end. */
 ---
 
-<div class="flex flex-wrap items-center justify-between gap-7 rounded-3xl border-[3px] border-ink bg-brand p-10 text-white shadow-sticker-lg">
+<div class="flex flex-wrap items-center justify-between gap-7 rounded-3xl border-[3px] border-ink bg-brand-dark p-10 text-white shadow-sticker-lg">
   <div class="max-w-[52ch]">
     <h2 class="mb-1.5 font-display text-[32px] font-extrabold leading-tight"><slot name="title" /></h2>
-    <p class="text-[#FFD9CF]"><slot /></p>
+    <p class="text-white/95"><slot /></p>
   </div>
   <slot name="action" />
 </div>

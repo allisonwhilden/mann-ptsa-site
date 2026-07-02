@@ -7,6 +7,6 @@ const { items } = Astro.props;
 const doubled = [...items, ...items];
 ---
 
-<div class="overflow-hidden border-y-[3px] border-ink bg-brand py-[11px] font-display text-[16.5px] font-bold whitespace-nowrap text-white" aria-hidden="true">
+<div class="overflow-hidden border-y-[3px] border-ink bg-brand-dark py-[11px] font-display text-[16.5px] font-bold whitespace-nowrap text-white" aria-hidden="true">
   {doubled.map((item) => <span class="mx-[22px]">★ {item}</span>)}
 </div>

@@ -5,8 +5,10 @@ interface Props {
   class?: string;
 }
 const { href, variant = 'primary', class: extra = '' } = Astro.props;
+// primary uses brand-dark: white-on-#EF3E36 is only 3.88:1 (fails WCAG AA
+// for button-size text); #C22B24 gives 5.73:1 and stays unmistakably red.
 const variants = {
-  primary: 'bg-brand text-white',
+  primary: 'bg-brand-dark text-white',
   white: 'bg-white text-ink',
   ink: 'bg-ink text-peach',
 };

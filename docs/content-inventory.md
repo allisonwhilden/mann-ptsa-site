@@ -1,7 +1,11 @@
 # Content inventory — mannptsa.org → new site
 
-Source: structured survey of the live site (July 2026, via search index — direct crawl pending
-network access; re-verify this list against the full crawl before cutover).
+Source: structured survey of the live site (July 2026, via search index), **updated against the
+full crawl of July 2** (`archive/crawl/` — 302 files). The live site was reorganized since spring:
+current nav = About Us / Membership / Support Us (Donate, Volunteer) / Activities / Events /
+School Life / Resources; new paths like `/Page/Volunteers/*` and `/Page/StudentLife/*` exist and
+are covered by the redirect map in `astro.config.mjs`. Board roster, meetings, Colt Corral
+structure, and volunteer facts were extracted from the crawl into the live pages (see git history).
 
 **Legend:** → *new home* · **CUT** = do not migrate · owner = named person required before the page is built (PLAN §4 rule).
 
