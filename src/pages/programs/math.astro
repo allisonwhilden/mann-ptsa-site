@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+---
+
+<Base title="Math Club" description="Horace Mann's Math Club: math nights, biweekly challenges, and competitive teams like Math is Cool — with financial help so every kid can join.">
+  <PageHero kicker="Programs · Math" title="Where math is the fun part." dotgrid>
+    <p>
+      Sign up for the Math Club list and get invited to everything the team runs: math nights,
+      challenges, after-school enrichment, and competitions. Some activities carry a fee, but
+      <b>financial assistance is always available</b> — nobody sits out over cost.
+    </p>
+  </PageHero>
+
+  <section class="mx-auto max-w-[860px] px-6 py-12">
+    <div class="mb-8 flex flex-wrap gap-4">
+      <Button href="#[VERIFY-mathclub-signup-url]">Join the Math Club list</Button>
+      <Button href="mailto:math@mannptsa.org" variant="white">math@mannptsa.org</Button>
+    </div>
+
+    <div class="space-y-6">
+      <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-7 shadow-sticker">
+        <h2 class="mb-2 font-display text-2xl font-extrabold">Math contests 🏆</h2>
+        <p class="text-[15.5px] text-body-soft">
+          Mann fields teams for <b>Math is Cool</b> (grades 4–5 — team problem-solving plus
+          individual rounds; ~20 students per grade, with an internal qualifying exam when interest
+          overflows) and runs <b>Math Challenge</b> problem sets through the year. Registration
+          windows and dates land in the newsletter each fall. [VERIFY 2026–27 contest calendar]
+        </p>
+      </div>
+      <div class="rounded-(--radius-card) border-[3px] border-ink bg-peach p-7 shadow-sticker">
+        <h2 class="mb-2 font-display text-2xl font-extrabold">Parents: K–3 needs you</h2>
+        <p class="text-[15.5px] text-body-soft">
+          The club is recruiting parents/guardians to lead new K–3 math enrichment sessions — no
+          math degree required, materials provided. Email
+          <a href="mailto:math@mannptsa.org" class="font-bold text-brand-dark">math@mannptsa.org</a> to help.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

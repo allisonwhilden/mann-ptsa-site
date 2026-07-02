@@ -1,6 +1,9 @@
 import type { APIRoute } from 'astro';
 
-const pages = ['', 'start-here/', 'join/', 'give/', 'events/', 'volunteer/', 'directory/', 'about/'];
+const pages = [
+  '', 'start-here/', 'join/', 'give/', 'events/', 'volunteer/', 'directory/', 'about/',
+  'programs/', 'programs/enrichment/', 'programs/arts/', 'programs/math/', 'programs/science-fair/', 'programs/school-life/',
+];
 
 export const GET: APIRoute = ({ site }) => {
   const base = (import.meta.env.BASE_URL as string).replace(/\/$/, '');

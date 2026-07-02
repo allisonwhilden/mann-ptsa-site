@@ -18,14 +18,18 @@ Signups disappear automatically after their `until` date.
 
 ## Update events
 
-Events come from the PTSA Google Calendar — edit the calendar, not the website.
-(Until the calendar feed is wired: edit `src/data/events.ts` the same way as above.)
+Events come from the PTSA calendar — **edit the calendar, not the website.** The site rebuilds
+from the calendar's ICS feed four times a day (feed URL lives in `src/lib/events.ts`; today it's
+the OurSchoolPages calendar, at cutover it becomes the Google Calendar). Need a change visible
+*now*? Actions tab → "Deploy to GitHub Pages" → "Run workflow".
 
 ## Something broke
 
 - **Site won't build:** Actions tab → click the red ✗ → read the error. Usually a typo in a
   recently edited file; GitHub's "Revert" button on the bad commit fixes it instantly.
 - **Site is fine but stale:** Actions tab → "Deploy to GitHub Pages" → "Run workflow".
+- **Deploy failed with "deployment_queued... Timeout":** GitHub Pages had a backend hiccup —
+  open the failed run and click "Re-run failed jobs". No code change needed.
 - **Design questions:** every approved component is at `/design/system` on the live site.
   If a new page needs something that isn't there, add it to the system page first.
 
