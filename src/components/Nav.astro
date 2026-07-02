@@ -14,37 +14,42 @@ const current = Astro.url.pathname;
 ---
 
 <nav class="border-b-[3px] border-ink bg-paper">
-  <div class="mx-auto flex max-w-[1060px] items-center gap-5 px-6 py-4">
-    <a href={`${base}/`} class="flex items-center gap-2.5 font-display text-[21px] font-extrabold text-ink no-underline">
-      <span class="-rotate-4 rounded-xl border-[3px] border-ink bg-brand px-2.5 py-0.5 text-white shadow-[3px_3px_0_var(--color-ink)]">GO&nbsp;COLTS</span>
-      <span>Mann&nbsp;PTSA</span>
+  <div class="mx-auto flex max-w-[1060px] items-center gap-3 px-4 py-4 sm:px-6">
+    <a href={`${base}/`} class="flex min-w-0 items-center gap-2 py-1.5 font-display text-lg font-extrabold text-ink no-underline sm:gap-2.5 sm:text-[21px]">
+      <span class="-rotate-4 rounded-xl border-[3px] border-ink bg-brand px-2 py-0.5 text-sm whitespace-nowrap text-white shadow-[3px_3px_0_var(--color-ink)] sm:px-2.5 sm:text-base">GO&nbsp;COLTS</span>
+      <span class="truncate">Mann&nbsp;PTSA</span>
     </a>
 
+    <!-- Desktop: full links + Join button -->
     <div class="ml-auto hidden items-center gap-5 lg:flex">
       {links.map(({ href, label }) => (
         <a
           href={`${base}${href}`}
           aria-current={current === `${base}${href}` ? 'page' : undefined}
           class:list={[
-            'border-b-[3px] text-[15px] font-extrabold text-ink no-underline hover:border-brand',
+            'border-b-[3px] py-1 text-[15px] font-extrabold text-ink no-underline hover:border-brand',
             current === `${base}${href}` ? 'border-brand' : 'border-transparent',
           ]}
         >
           {label}
         </a>
       ))}
-    </div>
-    <div class="ml-auto lg:ml-0">
       <Button href={`${base}/join/`}>Join!</Button>
     </div>
 
-    <details class="relative lg:hidden">
+    <!-- Mobile: hamburger; Join is the menu's first, loudest item -->
+    <details class="relative ml-auto lg:hidden">
       <summary class="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-xl border-[3px] border-ink bg-white shadow-sticker-sm [&::-webkit-details-marker]:hidden" aria-label="Menu">
-        <span class="font-extrabold">☰</span>
+        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" aria-hidden="true">
+          <path d="M1 2h18M1 8h18M1 14h18" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        </svg>
       </summary>
-      <div class="absolute right-0 z-50 mt-2 w-56 rounded-(--radius-card) border-[3px] border-ink bg-white p-3 shadow-sticker">
+      <div class="absolute right-0 z-50 mt-2 w-60 rounded-(--radius-card) border-[3px] border-ink bg-white p-3 shadow-sticker">
+        <a href={`${base}/join/`} class="mb-2 block rounded-xl border-[3px] border-ink bg-brand px-4 py-3 text-center font-display font-extrabold text-white no-underline shadow-sticker-sm">
+          Join the PTSA!
+        </a>
         {links.map(({ href, label }) => (
-          <a href={`${base}${href}`} class="block rounded-lg px-3 py-2.5 font-extrabold text-ink no-underline hover:bg-peach">
+          <a href={`${base}${href}`} class="block rounded-lg px-3 py-3 font-extrabold text-ink no-underline hover:bg-peach">
             {label}
           </a>
         ))}
