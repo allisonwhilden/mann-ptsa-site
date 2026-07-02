@@ -1,0 +1,20 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-12 bg-ink py-8 text-sm text-[#E8DFD5]">
+  <div class="mx-auto flex max-w-[1060px] flex-wrap items-center justify-between gap-4 px-6">
+    <p>
+      Horace Mann Elementary PTSA 2.8.37 · Redmond, WA · A 501(c)(3) nonprofit
+    </p>
+    <p class="flex gap-5">
+      <a href={`${base}/about/`} class="font-bold text-peach no-underline hover:underline">Contact</a>
+      <a href="https://www.facebook.com/horacemannptsa" class="font-bold text-peach no-underline hover:underline">Facebook</a>
+      <a href={`${base}/about/#meetings`} class="font-bold text-peach no-underline hover:underline">Meetings</a>
+    </p>
+  </div>
+  <div class="mx-auto mt-4 max-w-[1060px] px-6 text-xs text-[#9B9188]">
+    <p>© {year} Horace Mann PTSA · <span>[VERIFY: privacy policy + photo takedown contact before launch]</span></p>
+  </div>
+</footer>

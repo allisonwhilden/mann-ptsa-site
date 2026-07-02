@@ -1,6 +1,59 @@
 @import "tailwindcss";
 
 /*
-  Design tokens land here after the stylescape is chosen (P1).
-  Until then: Tailwind defaults only.
+  Mann PTSA design tokens — direction G ("Colt Energy, Refined").
+  Colors are the school's red/black/white plus two warm paper tones.
+  Utilities generated: bg-brand, text-ink, font-display, shadow-sticker, etc.
 */
+@theme {
+  --color-brand: #ef3e36;
+  --color-brand-dark: #c22b24;
+  --color-ink: #141414;
+  --color-paper: #fff8f2;
+  --color-peach: #ffe8d6;
+  --color-body: #3e3730;
+  --color-body-soft: #4a443d;
+
+  --font-display: "Bricolage Grotesque Variable", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Inter Variable", Inter, system-ui, sans-serif;
+
+  --shadow-sticker-sm: 2px 2px 0 var(--color-ink);
+  --shadow-sticker: 4px 4px 0 var(--color-ink);
+  --shadow-sticker-lg: 6px 6px 0 var(--color-ink);
+  --shadow-sticker-pressed: 2px 2px 0 var(--color-ink);
+
+  --radius-card: 18px;
+  --radius-btn: 14px;
+}
+
+/* Dot-grid paper texture (use sparingly — hero and occasional sections) */
+@utility dotgrid {
+  background-image: radial-gradient(circle, #14141410 1.2px, transparent 1.3px);
+  background-size: 22px 22px;
+}
+
+/* Washi tape accent (one per view) */
+@utility tape {
+  position: absolute;
+  width: 104px;
+  height: 26px;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  background: repeating-linear-gradient(-45deg, #ef3e36cc 0 8px, #ef3e36aa 8px 16px);
+  opacity: 0.85;
+  border-left: 2px dashed #fff8;
+  border-right: 2px dashed #fff8;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-paper);
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+}

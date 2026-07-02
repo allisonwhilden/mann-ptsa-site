@@ -1,0 +1,24 @@
+---
+interface Props {
+  date: string;
+  title: string;
+  href?: string;
+  tape?: boolean;
+  tilt?: 'left' | 'right' | 'none';
+}
+const { date, title, href, tape = false, tilt = 'none' } = Astro.props;
+const tilts = { left: '-rotate-[0.4deg]', right: 'rotate-[0.5deg]', none: '' };
+---
+
+<article
+  class:list={[
+    'relative rounded-(--radius-card) border-[3px] border-ink bg-white p-[22px] shadow-sticker-lg',
+    tilts[tilt],
+  ]}
+>
+  {tape && <span class="tape" aria-hidden="true"></span>}
+  <span class="mb-3 inline-block rounded-lg border-2 border-ink bg-brand px-2.5 py-1 text-[12.5px] font-extrabold text-white">{date}</span>
+  <h3 class="mb-1.5 font-display text-[19px] font-bold">{title}</h3>
+  <p class="mb-2 text-[14.5px] text-body-soft"><slot /></p>
+  {href && <a href={href} class="text-sm font-extrabold text-brand-dark no-underline">Details →</a>}
+</article>

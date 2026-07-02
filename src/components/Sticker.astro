@@ -1,0 +1,36 @@
+---
+/**
+ * Sticker badge. Shapes: circle | tile | pill.
+ * Reserve clusters for the Home hero; single stickers OK as section accents.
+ */
+interface Props {
+  shape?: 'circle' | 'tile' | 'pill';
+  color?: 'red' | 'peach' | 'white' | 'ink';
+  rotate?: number;
+  class?: string;
+}
+const { shape = 'pill', color = 'white', rotate = 0, class: extra = '' } = Astro.props;
+const shapes = {
+  circle: 'rounded-full aspect-square',
+  tile: 'rounded-3xl aspect-square',
+  pill: 'rounded-full',
+};
+const colors = {
+  red: 'bg-brand text-white',
+  peach: 'bg-peach text-ink',
+  white: 'bg-white text-ink',
+  ink: 'bg-ink text-peach',
+};
+---
+
+<div
+  class:list={[
+    'grid place-items-center border-[3px] border-ink text-center font-display font-extrabold shadow-sticker',
+    shapes[shape],
+    colors[color],
+    extra,
+  ]}
+  style={`transform: rotate(${rotate}deg)`}
+>
+  <slot />
+</div>
