@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction A — Hallway Warm · Mann PTSA stylescape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#A31621; --red-deep:#7E0E18; --ink:#221C19; --cream:#FAF5EE;
+    --paper:#FFFFFF; --sand:#F1E7D8; --muted:#6E6259;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:"Nunito Sans",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  .note{background:var(--ink);color:#EFE8E0;padding:14px 24px;font-size:14px}
+  .note strong{color:#F5C6A5}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{background:var(--cream);border-bottom:1px solid #E5D9C8}
+  .nav-in{display:flex;align-items:center;gap:28px;padding:18px 0}
+  .mark{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-size:20px;font-weight:650}
+  .mark .dot{width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:15px}
+  .nav-in a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}
+  .nav-in .links{display:flex;gap:22px;margin-left:auto}
+  .btn{display:inline-block;background:var(--red);color:#fff;border-radius:999px;padding:10px 22px;font-weight:800;text-decoration:none;font-size:15px}
+  .btn:hover{background:var(--red-deep)}
+  .btn.ghost{background:transparent;color:var(--red);box-shadow:inset 0 0 0 2px var(--red)}
+  /* hero */
+  .hero{padding:72px 0 56px}
+  .hero .kicker{letter-spacing:.14em;text-transform:uppercase;font-weight:800;font-size:12.5px;color:var(--red)}
+  .hero h1{font-family:Fraunces,serif;font-weight:650;font-size:clamp(38px,6vw,58px);line-height:1.08;max-width:15ch;margin:14px 0 18px}
+  .hero p{font-size:19px;color:var(--muted);max-width:52ch;margin-bottom:28px}
+  .hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+  .photo{aspect-ratio:4/5;border-radius:24px 24px 120px 24px;background:
+    linear-gradient(160deg,#E9B98F 0%,#D98455 55%,var(--red) 130%);position:relative;overflow:hidden}
+  .photo::after{content:"photo of kids at carnival";position:absolute;inset:auto 16px 14px;color:#fff9;font-size:13px}
+  /* events */
+  section{padding:48px 0}
+  h2{font-family:Fraunces,serif;font-weight:650;font-size:30px;margin-bottom:22px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--paper);border-radius:18px;padding:22px;border:1px solid #EADFCE;box-shadow:0 1px 2px #0001}
+  .date{display:inline-block;background:var(--sand);border-radius:10px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--red-deep);margin-bottom:12px}
+  .card h3{font-size:18px;font-weight:800;margin-bottom:6px}
+  .card p{font-size:14.5px;color:var(--muted)}
+  .card a{color:var(--red);font-weight:800;font-size:14px;text-decoration:none}
+  /* join band */
+  .band{background:var(--red);color:#fff;border-radius:28px;padding:44px;display:flex;align-items:center;gap:32px;justify-content:space-between;flex-wrap:wrap}
+  .band h2{color:#fff;margin:0 0 6px}
+  .band p{color:#FBD9CE;max-width:44ch}
+  .band .btn{background:#fff;color:var(--red)}
+  /* specimen */
+  .spec{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .swatches{display:flex;gap:10px}
+  .sw{width:74px;height:74px;border-radius:14px;border:1px solid #0002;display:flex;align-items:flex-end;padding:6px;font-size:10.5px;color:#fff}
+  footer{background:var(--ink);color:#CFC5BB;padding:34px 0;margin-top:56px;font-size:14px}
+  @media(max-width:760px){.hero-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.spec{grid-template-columns:1fr}.nav-in .links{display:none}}
+</style>
+</head>
+<body>
+<div class="note"><strong>Direction A · “Hallway Warm.”</strong> The school hallway bulletin board, grown up: cream paper, deep brick red, a friendly serif with real character. Warm, human, community-first.</div>
+
+<nav><div class="wrap nav-in">
+  <span class="mark"><span class="dot">M</span> Mann PTSA</span>
+  <span class="links"><a href="#">New to Mann?</a><a href="#">Events</a><a href="#">Volunteer</a><a href="#">Give</a><a href="#">Directory</a></span>
+  <a class="btn" href="#">Join the PTSA</a>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="kicker">Horace Mann Elementary · Redmond, WA</span>
+    <h1>Every Colt belongs here.</h1>
+    <p>We're the parents, teachers, and neighbors behind the carnival, the art programs, the math nights — and we'd love your help (no experience required).</p>
+    <div class="cta"><a class="btn" href="#">Join for 2026–27</a><a class="btn ghost" href="#">See what's coming up</a></div>
+  </div>
+  <div class="photo"></div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Coming up</h2>
+  <div class="cards">
+    <div class="card"><span class="date">TUE · SEP 15</span><h3>Back-to-School Night</h3><p>Meet your teachers, find your people. PTSA table by the gym doors.</p><a href="#">Details →</a></div>
+    <div class="card"><span class="date">FRI · SEP 25</span><h3>Movie Night on the Field</h3><p>Blankets, popcorn, and a family favorite under the stars.</p><a href="#">Details →</a></div>
+    <div class="card"><span class="date">THU · OCT 22</span><h3>General Membership Meeting</h3><p>Library + Zoom, 6:00 pm. Childcare provided. Every voice counts.</p><a href="#">Details →</a></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="band">
+    <div><h2>Membership is $15. Belonging is the point.</h2><p>Join in two minutes — every membership funds classroom grants, art, and events without admission fees.</p></div>
+    <a class="btn" href="#">Join now</a>
+  </div>
+</div></section>
+
+<section><div class="wrap spec">
+  <div>
+    <h2>Type</h2>
+    <p style="font-family:Fraunces,serif;font-size:34px;font-weight:650;line-height:1.15">Fraunces — headlines with warmth &amp; wit</p>
+    <p style="margin-top:10px;font-size:17px">Nunito Sans — friendly, sturdy body text that stays readable at small sizes on a phone in the car line.</p>
+  </div>
+  <div>
+    <h2>Palette</h2>
+    <div class="swatches">
+      <div class="sw" style="background:#A31621">#A31621</div>
+      <div class="sw" style="background:#7E0E18">#7E0E18</div>
+      <div class="sw" style="background:#221C19">#221C19</div>
+      <div class="sw" style="background:#F1E7D8;color:#6E6259">#F1E7D8</div>
+      <div class="sw" style="background:#FAF5EE;color:#6E6259;border-color:#0003">#FAF5EE</div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Horace Mann Elementary PTSA 2.8.37 · Redmond, WA · A 501(c)(3) nonprofit</div></footer>
+</body>
+</html>
