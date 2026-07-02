@@ -1,0 +1,23 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Horace Mann Elementary PTSA — Redmond, WA' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} · Mann PTSA</title>
+  </head>
+  <body class="min-h-screen bg-white text-slate-900 antialiased">
+    <slot />
+  </body>
+</html>
