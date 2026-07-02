@@ -1,0 +1,50 @@
+﻿.HomeArticles .ArticleTitleDiv
+{
+	font-family: Segoe UI, Candara, Bitstream Vera Sans, DejaVu Sans, Bitsream Vera Sans, Trebuchet MS, Verdana, Verdana Ref, sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	color: #3D6E92;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	line-height: 1.3em;
+}
+
+.HomeArticles .ArticleTitleDiv.HighPriority
+{
+	font-style: italic;
+	color: #D72E2E;
+}
+
+.HomeArticles .ArticleDescriptionDiv
+{
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+	line-height: 1.4em;
+}
+
+.HomeArticles hr
+{
+	margin: 10px 0px;
+	padding: 0px;
+	border: none;
+	border-top: 1px solid #D0D0D0;
+}
+
+.HomeArticles .ArticlePostedOnDiv
+{
+	margin-top: 5px;
+	font-size: 0.9em;
+	font-style: italic;
+}
+
+.CustomContentIconsDiv
+{
+    margin: 0px 0px 3px 5px;
+}
+    
+.CustomContentHr
+{
+    border: 1px solid #C0C0C0;
+    border-top: none;
+    margin: 0px;
+}

@@ -1,12 +1,22 @@
 ---
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource-variable/inter';
 import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
   description?: string;
+  /** Hide nav/footer chrome (e.g., bare pages) */
+  bare?: boolean;
 }
 
-const { title, description = 'Horace Mann Elementary PTSA — Redmond, WA' } = Astro.props;
+const {
+  title,
+  description = 'Horace Mann Elementary PTSA — families, teachers, and neighbors powering carnival nights, classroom grants, art, and math programs in Redmond, WA.',
+  bare = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -15,9 +25,19 @@ const { title, description = 'Horace Mann Elementary PTSA — Redmond, WA' } = A
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={`${title} · Mann PTSA`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
     <title>{title} · Mann PTSA</title>
   </head>
-  <body class="min-h-screen bg-white text-slate-900 antialiased">
-    <slot />
+  <body class="min-h-screen bg-paper font-sans text-ink antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:m-2 focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
+      Skip to content
+    </a>
+    {!bare && <Nav />}
+    <main id="main">
+      <slot />
+    </main>
+    {!bare && <Footer />}
   </body>
 </html>

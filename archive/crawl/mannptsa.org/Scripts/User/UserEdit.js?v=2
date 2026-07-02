@@ -1,0 +1,19 @@
+﻿
+$(document).ready(function () {
+
+    $(".odsmain").change(function () {
+        var container = $(this).parentsUntil(".CheckBoxesContainer");
+        var subs = $(container).find(".odssub");
+
+        if ($(this).is(':checked'))
+        {
+            $(subs).removeAttr("disabled")
+            $(subs).prop("checked", true);
+        }
+        else
+        {
+            $(subs).removeAttr("checked")
+            $(subs).attr("disabled", "disabled");
+        }
+    })
+});

@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+
+const budget = [
+  ['After-school enrichment & music', '$[VERIFY]'],
+  ['Art programs (docents, kiln, Art Night)', '$[VERIFY]'],
+  ['Classroom grants & teacher support', '$[VERIFY]'],
+  ['Community events (movie night, carnival)', '$[VERIFY]'],
+  ['Math, science fair & academic programs', '$[VERIFY]'],
+];
+---
+
+<Base title="Give" description="Support the Colt Corral, Horace Mann PTSA's one-and-done annual giving campaign — 100% funds programs, art, and events for every kid.">
+  <PageHero kicker="Colt Corral · annual giving" title="One ask. Zero wrapping paper." dotgrid>
+    <p>
+      Instead of selling things all year, we make one direct ask: the <b>Colt Corral</b>. It funds
+      the entire ~$45,000 [VERIFY] program budget — enrichment, art, classroom grants, and events
+      with no admission fees. Give what fits your family; every dollar stays at Mann.
+    </p>
+  </PageHero>
+
+  <section class="mx-auto max-w-[1060px] px-6 py-12">
+    <div class="grid items-start gap-10 md:grid-cols-[1fr_0.9fr]">
+      <div>
+        <h2 class="mb-4 font-display text-3xl font-extrabold">Where the money goes</h2>
+        <div class="overflow-hidden rounded-(--radius-card) border-[3px] border-ink bg-white shadow-sticker">
+          {budget.map(([item, amt], i) => (
+            <div class:list={['flex items-baseline justify-between gap-6 px-6 py-4', i !== 0 && 'border-t-2 border-ink/10']}>
+              <span class="text-[15.5px] text-body-soft">{item}</span>
+              <span class="font-display font-extrabold text-brand-dark">{amt}</span>
+            </div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-body-soft">
+          The full budget is approved by members each fall and published in meeting minutes —
+          see <a href="/about/" class="font-bold text-brand-dark">About → Meetings</a>. Year-in-review
+          coming after launch.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-7 shadow-sticker">
+          <h2 class="mb-2 font-display text-xl font-bold">Give to the Colt Corral</h2>
+          <p class="mb-4 text-[15px] text-body-soft">
+            One-time or set your own amount. Checkout opens on our payment partner. [VERIFY platform + URL]
+          </p>
+          <Button href="#[VERIFY-donation-url]">Donate now</Button>
+        </div>
+        <div class="rounded-(--radius-card) border-[3px] border-ink bg-peach p-7 shadow-sticker">
+          <h2 class="mb-2 font-display text-xl font-bold">Double it for free 💥</h2>
+          <p class="text-[15px] text-body-soft">
+            Many local employers (Microsoft especially) match donations and even pay for volunteer
+            hours. We're a 501(c)(3) — EIN <b>[VERIFY EIN]</b>. Search “Horace Mann Elementary PTSA”
+            in your company's giving portal, or email
+            <a href="mailto:treasurer@mannptsa.org" class="font-bold text-brand-dark">treasurer@mannptsa.org [VERIFY]</a> for help.
+          </p>
+        </div>
+        <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-7 shadow-sticker">
+          <h2 class="mb-2 font-display text-xl font-bold">No-cost ways to give</h2>
+          <p class="text-[15px] text-body-soft">
+            Fred Meyer Community Rewards, employer volunteer-hour matching, and donating your time —
+            all of it counts. [VERIFY current passive-fundraising programs]
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

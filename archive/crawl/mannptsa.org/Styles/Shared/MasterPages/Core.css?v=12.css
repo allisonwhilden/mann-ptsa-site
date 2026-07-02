@@ -1,0 +1,711 @@
+﻿/*
+----------------------------------------------------------
+GENERAL PURPOSE CLASSES
+----------------------------------------------------------
+*/
+body
+{
+    font-size: 12px;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    line-height: 1.6em;
+    color: #606060;
+
+    background-color: #FFFFFF;
+    
+    width: 770px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.CenterContents
+{
+	text-align: center;
+}
+
+.Hidden
+{
+	display: none;
+}
+
+.PositionRelative
+{
+	position: relative;
+}
+
+
+/*
+----------------------------------------------------------
+CONTAINERS
+----------------------------------------------------------
+*/
+.SectionBox
+{
+	border: 2px solid #B6C5EA;
+	background-color: #F8F8F8;
+	margin: 10px 0px 0px 0px;
+}
+
+.WideMarginsDiv
+{
+	padding: 20px 100px;
+}
+
+.NarrowMarginsDiv
+{
+	padding: 10px 20px;
+}
+
+.VeryNarrowMarginsDiv
+{
+	padding: 5px 10px 0px 10px;
+}
+
+.Information, .WideInformation, .HelpInformation, .HelpWideInformation, .UrlInformation
+{
+	display: none;
+	margin: 0px 0px;
+	font-family: Verdana, Helvetica, Sans-Serif;
+	color: #606060;
+	font-weight: normal;
+	vertical-align: middle;
+	line-height: 1.4em;
+	text-align: left;
+}
+
+.UrlInformationAddress
+{
+	font-size: 12px;
+	font-family: Verdana, Helvetica, Sans-Serif;
+	color: #3D6E92;
+    border: 1px solid #808080;
+    padding: 2px 5px;
+    margin: 0px 20px;
+    width: 430px;
+    overflow: scroll;
+    height: 30px;
+    line-height: 1.8em;
+}
+
+#ServiceAnnouncementsDiv
+{
+    background-color: #ff6d00;
+    border: 3px solid white;
+    color: white;
+    font-size: 14px;
+    padding: 5px 15px 5px 5px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/*
+----------------------------------------------------------
+PARAGRAPHS
+----------------------------------------------------------
+*/
+
+p
+{
+}
+
+/*
+----------------------------------------------------------
+HYPERLINKS and BUTTONS
+----------------------------------------------------------
+*/
+
+a.GrayLink
+{
+    color: #606060;
+}
+
+a.GrayLink:hover
+{
+    color: #000000;
+}
+
+.GrayLink a
+{
+    color: #606060;
+}
+
+.GrayLink a:hover
+{
+    color: #000000;
+}
+
+a img
+{
+	border-style: none;
+}
+
+a.SubtleButton
+{
+	color: #606060;
+	background-color: #F0F0F0;
+	border: 1px solid #A0A0A0;
+	height: 25px;
+    padding: 2px 5px;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+a:hover.SubtleButton
+{
+	background-color: #E0E0E0;
+    text-decoration: none;
+}
+
+button.SubtleButton
+{
+	color: #606060;
+	background-color: #F0F0F0;
+	border: 1px solid #A0A0A0;
+	height: 25px;
+    padding: 2px 5px 5px 5px;
+    text-decoration: none;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+button:hover.SubtleButton
+{
+	background-color: #E0E0E0;
+    text-decoration: none;
+}
+
+button.PopulateLinkButton, button.InsertLinkButton, button.InsertImageButton {
+	border: none;
+	background: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+button.DropDownButton
+{
+	font-family: Verdana, Helvetica, Sans-Serif;
+    font-size: 10pt;
+    line-height: 1.2em;
+    color: White;
+    border-radius: 3px;
+    height: 22px;
+    width: 95px;
+    margin: 0;
+    padding: 0 5px;
+    text-align: left;
+    text-decoration: none;
+    background-color: #91B0C2;
+    border: 1px solid #6F91A5;
+}
+
+button.DropDownButton:hover
+{
+    background-color: #6F91A5;
+}
+
+div.DropDownCheckBoxesContainer
+{
+    position: absolute;
+    top: 24px;
+    left: 0px;
+    display: none;
+    z-index: 100;
+    background-color: #91B0C2;
+    border: 4px solid #6F91A5;
+    color: White;
+    border-radius: 7px;
+    padding: 10px 0px;
+}
+
+a.button 
+{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+    padding: 2px 5px 2px 5px;
+}
+
+/*
+----------------------------------------------------------
+POPUPS
+----------------------------------------------------------
+*/
+
+.Popup
+{
+	position: absolute;
+	z-index: 100;
+	display: none;
+}
+
+.ErrorPopup
+{
+    background-color: red;
+    color: White;
+    width: 220px;
+    border-radius: 5px;
+    border: 2px solid #800000;
+    padding: 6px;
+	font-family: Verdana, Helvetica, Sans-Serif;
+    font-size: 8pt;
+    line-height: 1.5em;
+}
+
+.ErrorPopup a
+{
+    color: White;
+}
+
+.WarningPopup
+{
+    background-color: #FFC376;
+    color: #AB3434;
+    width: 220px;
+    border-radius: 5px;
+    border: 2px solid #FF8F00;
+    padding: 6px;
+	font-family: Verdana, Helvetica, Sans-Serif;
+    font-size: 8pt;
+    line-height: 1.5em;
+}
+
+.WarningPopup a
+{
+    color: #AB3434;
+}
+
+.ImagePreviewDiv
+{
+	border: 5px solid #A0A0A0;
+	position: absolute;
+	top: -100px;
+	left: 100px;
+	z-index: 100;
+	display: none;
+	padding: 10px;
+	background-color: White;
+	width: 200px;
+}
+
+.ModalDialog
+{
+	display: none;
+}
+
+div.ui-widget-overlay 
+{
+    z-index: 99;
+}
+
+/*
+----------------------------------------------------------
+LISTS
+----------------------------------------------------------
+*/
+
+li
+{
+	margin: 15px 0px 0px 0px;
+}
+
+li li
+{
+	margin: 0px;
+}
+
+
+/*
+----------------------------------------------------------
+HEADINGS   
+----------------------------------------------------------
+*/
+h2
+{
+	font-family: Georgia, Times New Roman, Times, serif;
+	font-weight: normal;
+	font-size: 2em;
+ 	margin: 0px;
+    padding: 0 0 5px 0;
+    color: #3D6E92;
+    line-height: 1.3em;
+}
+
+h3
+{
+	font-family: Georgia, Times New Roman, Times, serif;
+    font-size: 1.5em;
+    background-color: #3D6E92;
+    color: White;
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    line-height: 1.3em;
+}
+
+h4
+{
+    font-size: 1.5em;
+    font-weight: bold;
+	margin: 0px 0px 5px 0px;
+	color: #3D6E92;
+}
+
+h5
+{
+	margin: 0px 0px 5px 0px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+/*
+----------------------------------------------------------
+TABLES
+----------------------------------------------------------
+*/
+table
+{
+	border-collapse: collapse;
+}
+
+th
+{
+	margin: 0px;
+	border: none;
+	text-align: left;
+	padding: 0px 10px;
+	background-color: #606060;
+	color: #ffffff;
+	vertical-align: top;
+}
+
+td
+{
+	margin: 0px;
+	border: none;
+	text-align: left;
+	padding: 0px 10px;
+	vertical-align: top;
+
+    font-size: 12px;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    line-height: 1.6em;
+    color: #606060;
+}
+
+.BasicNoLinesTable .RowHeader
+{
+	color: #7A6B8B;
+	font-weight: bold;
+}
+
+.BasicNoLinesTable
+{
+	border-collapse: collapse;
+	margin: 20px 0px;
+}
+
+.BasicNoLinesTable td
+{
+	vertical-align: top;
+	text-align: left;
+	padding: 7px 20px 7px 5px;
+	line-height: 1.4em;
+}
+
+.BasicNoLinesTable th
+{
+	text-align: left;
+	padding: 7px 20px 7px 5px;
+	line-height: 1.4em;
+	color: White;
+	font-weight: normal;
+	background-color: #7A6B8B;
+}
+
+.ExtraWideColumnsTable td, .ExtraWideColumnsTable th
+{
+	padding: 7px 60px 7px 5px;
+}
+
+.ShortRowsTable td
+{
+	padding: 3px 20px 1px 5px;
+}
+
+.FieldsTable
+{
+	border-collapse: collapse;
+	margin: 10px 0px;
+}
+
+.FieldsTable td
+{
+	vertical-align: top;
+	text-align: left;
+	padding: 3px 20px 3px 0px;
+	line-height: 1.4em;
+}
+
+.FieldsTable .FieldName
+{
+	font-family: Georgia, Times New Roman, Times, serif;
+	font-weight: normal;
+	color: #606060;
+    padding-top: 4px;
+}
+
+.FieldsTable .FieldValue
+{
+	font-family: Verdana, Helvetica, Sans-Serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #3D6E92;
+}
+
+/*
+----------------------------------------------------------
+FORM LAYOUT ELEMENTS   
+----------------------------------------------------------
+*/
+
+.StandardFormDiv label
+{
+	font-family: Georgia, Times New Roman, Times, serif;
+	font-weight: normal;
+	color: #606060;
+}
+
+.StandardFormDiv input[type="text"],
+.StandardFormDiv input[type="color"],
+.StandardFormDiv input[type="password"],
+.StandardFormDiv input[type="file"],
+.StandardFormDiv textarea,
+.StandardFormDiv select
+{
+	width: 100%;
+	padding: 4px;
+	margin: 2px 0px 8px 0px;
+
+	font-family: Verdana, Helvetica, Sans-Serif;
+	font-weight: normal;
+	font-size: 12px;
+	background-color: #E8EEF4;
+	border: 1px solid #B6C5EA;
+	color: #3D6E92;
+	
+	line-height: 1.5em;
+}
+
+.StandardFormDiv input[type="text"]:disabled,
+.StandardFormDiv input[type="color"]:disabled,
+.StandardFormDiv input[type="password"]:disabled,
+.StandardFormDiv input[type="file"]:disabled,
+.StandardFormDiv textarea:disabled,
+.StandardFormDiv select:disabled 
+{
+    background-color: #f8f8f8;
+    color: #aaaaaa;
+    border-color: #dddddd;
+}
+
+.StandardFormDiv .TinyWidthInput, 
+.StandardFormDiv .EighthWidthInput, 
+.StandardFormDiv .QuarterWidthInput, 
+.StandardFormDiv .HalfWidthInput,
+.StandardFormDiv .ThreeFourthsWidthInput, 
+.StandardFormDiv .SevenEighthsWidthInput, 
+.StandardFormDiv .WholeWidthInput,
+.StandardFormDiv .CustomWidthInput
+{
+	vertical-align: top;
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.StandardFormDiv .TinyWidthInput
+{
+	margin-right: 10px;
+	width: 70px;
+}
+
+.StandardFormDiv .EighthWidthInput
+{
+	width: 80px;
+}
+
+.StandardFormDiv .QuarterWidthInput
+{
+	width: 180px;
+}
+
+.StandardFormDiv .HalfWidthInput
+{
+	width: 380px;
+}
+
+.StandardFormDiv .ThreeFourthsWidthInput
+{
+	width: 580px;
+}
+
+.StandardFormDiv .SevenEighthsWidthInput
+{
+	width: 680px;
+}
+
+.StandardFormDiv .WholeWidthInput
+{
+	width: 780px;
+}
+
+.StandardFormDiv .EighthWidthInput select
+{
+	width: 90px;
+}
+
+.StandardFormDiv .QuarterWidthInput select
+{
+	width: 190px;
+}
+
+.StandardFormDiv .HalfWidthInput select
+{
+	width: 390px;
+}
+
+.StandardFormDiv .ThreeFourthsWidthInput select
+{
+	width: 590px;
+}
+
+.StandardFormDiv .SevenEighthsWidthInput select
+{
+	width: 690px;
+}
+
+.StandardFormDiv .WholeWidthInput select
+{
+	width: 790px;
+}
+
+.StandardFormDiv.HalfWidthForm
+{
+	width: 400px;
+	margin: auto;
+}
+
+.StandardFormDiv.WholeWidthForm
+{
+	width: 800px;
+	margin: auto;
+}
+
+.StandardFormDiv.OneAndAHalfWidthForm
+{
+	width: 1200px;
+}
+
+.StandardFormDiv .CheckBoxAndCaptionDiv
+{
+	font-family: Georgia, Times New Roman, Times, serif;
+	font-weight: normal;
+	color: #606060;
+	vertical-align: top;
+	margin: 5px 0px 10px 0px;
+}
+
+.StandardFormDiv .CheckBoxDiv
+{
+	display: inline-block; 
+	width: 32px; 
+	vertical-align: top;
+}
+
+.StandardFormDiv .CheckBoxDiv img
+{
+	margin: 0px 0px 1px 0px;
+}
+
+.StandardFormDiv .CheckBoxDiv>input
+{
+	padding: 3px 0px 0px 0px;
+	margin: 3px 0px 0px 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.StandardFormDiv .CheckBoxCaptionDiv
+{
+	display: inline-block; 
+	width: 145px; 
+	vertical-align: top;
+}
+
+.StandardFormDiv .CheckBoxesContainer
+{
+	padding: 5px;
+	vertical-align: top;
+	width: 100%;
+	display: inline-block;
+}
+
+/*
+----------------------------------------------------------
+REPEATERS
+----------------------------------------------------------
+*/
+.StandardFormDiv .RepeaterAddButtonDiv
+{
+	margin-top: 10px;
+}
+
+.StandardFormDiv .RepeaterCellFieldsDivWithBorder
+{
+	display: inline-block;
+	vertical-align: top;
+	background-color: #f4f4f4;
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	margin-bottom: 5px;
+	padding: 0px 5px;
+}
+
+
+/*
+----------------------------------------------------------
+VALIDATION HELPERS
+----------------------------------------------------------
+*/
+
+.input-validation-error
+{
+	border: 1px solid #FF4040 !important;
+    background-color: #FFEEEE !important;
+    color: #FF0000 !important;
+}
+
+.validation-summary-errors
+{
+	border: 1px solid #FF4040;
+    background-color: #FFEEEE;
+    color: #FF0000;
+    margin: 0px 10px 10px 0px;
+    padding: 0px;
+    line-height: 10px;
+}
+
+.validation-summary-errors ul
+{
+	margin: 5px 10px 5px 25px;
+	padding: 0px;
+	line-height: 1.3em;
+}
+
+.validation-summary-errors li
+{
+	margin: 7px 0px;
+	padding: 0px;
+}

@@ -1,0 +1,62 @@
+﻿.CalloutDiv
+{
+	width: 261px;
+	position: absolute;
+	top: -25px;
+	left: 0px;
+	z-index: 100;
+	display: none;
+}
+
+.CalloutTopDiv
+{
+    background-image: url(../../../Images/Shared/Callout/CalloutTop.png);
+	background-repeat: no-repeat;
+	height: 13px;
+}
+
+.CalloutMiddleDiv
+{
+    background-image: url(../../../Images/Shared/Callout/CalloutMiddle.png);
+	background-repeat: repeat-y;
+	padding: 0px 18px 7px 9px;
+}
+
+.CalloutBottomDiv
+{
+    background-image: url(../../../Images/Shared/Callout/CalloutBottom.png);
+	background-repeat: no-repeat;
+	height: 16px;
+}
+
+.CalloutMiddleDiv hr
+{
+	border: none;
+	border-top: 1px solid #DBD35B;
+}
+
+.CalloutWideDiv
+{
+	width: 512px;
+	position: absolute;
+	top: -25px;
+	left: 0px;
+	z-index: 100;
+	display: none;
+}
+
+.CalloutWideDiv .CalloutTopDiv
+{
+    background-image: url(../../../Images/Shared/Callout/CalloutWideTop.png);
+}
+
+.CalloutWideDiv .CalloutMiddleDiv
+{
+    background-image: url(../../../Images/Shared/Callout/CalloutWideMiddle.png);
+}
+
+.CalloutWideDiv .CalloutBottomDiv
+{
+    background-image: url(../../../Images/Shared/Callout/CalloutWideBottom.png);
+}
+

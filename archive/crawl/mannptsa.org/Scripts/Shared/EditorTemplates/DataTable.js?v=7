@@ -1,0 +1,168 @@
+﻿function EatTextboxKeystrokes(event)
+{
+    if ((event.keyCode == 8) || (event.keyCode == 46))
+    {
+        // Do not allow Backspace or Delete keys.
+        return false;
+    }
+
+    if ((event.charCode == 86) || (event.charCode == 118) || (event.charCode == 88) || (event.charCode == 120))
+    {
+        return false;
+    }
+
+    if (event.ctrlKey || event.altKey)
+    {
+        // Do allow anything with Ctrl- or Alt- keys.
+        return true;
+    }
+
+    if (event.charCode > 0)
+    {
+        // Don't allow any alphanumeric characters.
+        return false;
+    }
+
+    return true;
+}
+
+function DataTableEnableDisableAllDataTableUpDownButtons() {
+    $(".DataTable .DataRowMoveUpButton").css('visibility', 'hidden');
+    $(".DataTable .DataRowMoveDownButton").css('visibility', 'hidden');
+    $(".DataTable .DataRowMoveTopButton").css('visibility', 'hidden');
+    $(".DataTable .DataRowMoveBottomButton").css('visibility', 'hidden');
+
+    $(".DataTable tbody").each(function () {
+        $(this)
+        .children("tr")
+        .first()
+        .siblings()
+        .find(".DataRowMoveUpButton, .DataRowMoveTopButton")
+        .css('visibility', 'visible');
+    });
+
+    $(".DataTable tbody").each(function () {
+        $(this)
+        .children("tr")
+        .last()
+        .siblings()
+        .find(".DataRowMoveDownButton, .DataRowMoveBottomButton")
+        .css('visibility', 'visible');
+    });
+};
+
+function DataTableHighlightAllOddRows() {
+    $(".DataTable").find("tr:odd").addClass("OddRow");
+    $(".DataTable").find("tr:even").removeClass("OddRow");
+};
+
+
+function DataTableRenumberAllRows() {
+    $(".DataTable tbody").each(function () {
+        var rowNumber = 1;
+
+        $(this).children("tr").each(function () {
+            $(this).find("input.DataTableRowNumber").attr("value", rowNumber);
+            rowNumber++;
+        });
+    });
+};
+
+function DataTableShowUnsavedChanges() {
+    $("#UnsavedChangesDiv").slideDown('slow');
+}
+
+function DataTableAttachClickHandlersToMoveButtons($scope)
+{
+    $scope.find(".DataRowMoveTopButton").click(function () {
+        var $repeaterCellToMove = $(this).parents("tr").first();
+        var $topCell = $repeaterCellToMove.siblings().first();
+
+        if ($topCell.length > 0) {
+            $repeaterCellToMove.insertBefore($topCell);
+
+            DataTableRenumberAllRows();
+            DataTableHighlightAllOddRows();
+            DataTableEnableDisableAllDataTableUpDownButtons();
+            DataTableShowUnsavedChanges();
+        }
+
+        return false;
+    });
+
+    $scope.find(".DataRowMoveBottomButton").click(function () {
+        var $repeaterCellToMove = $(this).parents("tr").first();
+        var $bottomCell = $repeaterCellToMove.siblings().last();
+
+        if ($bottomCell.length > 0) {
+            $repeaterCellToMove.insertAfter($bottomCell);
+
+            DataTableRenumberAllRows();
+            DataTableHighlightAllOddRows();
+            DataTableEnableDisableAllDataTableUpDownButtons();
+            DataTableShowUnsavedChanges();
+        }
+
+        return false;
+    });
+
+    $scope.find(".DataRowMoveUpButton").click(function () {
+        var $repeaterCellToMove = $(this).parents("tr").first();
+        var $previousCell = $repeaterCellToMove.prev();
+
+        if ($previousCell.length > 0) {
+            $repeaterCellToMove.insertBefore($previousCell);
+
+            var swapRowNumber1 = $repeaterCellToMove.find("input.DataTableRowNumber").attr("value");
+            var swapRowNumber2 = $previousCell.find("input.DataTableRowNumber").attr("value");
+            $repeaterCellToMove.find("input.DataTableRowNumber").attr("value", swapRowNumber2);
+            $previousCell.find("input.DataTableRowNumber").attr("value", swapRowNumber1);
+
+            $repeaterCellToMove.toggleClass("OddRow");
+            $previousCell.toggleClass("OddRow");
+
+            DataTableEnableDisableAllDataTableUpDownButtons();
+            DataTableShowUnsavedChanges();
+        }
+
+        return false;
+    });
+
+    $scope.find(".DataRowMoveDownButton").click(function () {
+        var $repeaterCellToMove = $(this).parents("tr").first();
+        var $nextCell = $repeaterCellToMove.next();
+
+        if ($nextCell.length > 0) {
+            $repeaterCellToMove.insertAfter($nextCell);
+
+            var swapRowNumber1 = $repeaterCellToMove.find("input.DataTableRowNumber").attr("value");
+            var swapRowNumber2 = $nextCell.find("input.DataTableRowNumber").attr("value");
+            $repeaterCellToMove.find("input.DataTableRowNumber").attr("value", swapRowNumber2);
+            $nextCell.find("input.DataTableRowNumber").attr("value", swapRowNumber1);
+
+            $repeaterCellToMove.toggleClass("OddRow");
+            $nextCell.toggleClass("OddRow");
+
+            DataTableEnableDisableAllDataTableUpDownButtons();
+            DataTableShowUnsavedChanges();
+        }
+
+        return false;
+    });
+}
+
+$(document).ready(function ()
+{
+    DataTableEnableDisableAllDataTableUpDownButtons();
+    DataTableHighlightAllOddRows();
+    DataTableRenumberAllRows();
+
+    $(".DataTable .ExpandContractButton").click(function ()
+    {
+        $(this).siblings(".ExpandContractButton").addBack().toggleClass("Hidden");
+        $(this).siblings(".DetailsView").toggleClass("Hidden");
+        return false;
+    });
+
+    DataTableAttachClickHandlersToMoveButtons($(".DataTable"));
+});

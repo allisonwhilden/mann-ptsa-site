@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import EventCard from '../components/EventCard.astro';
+import { upcomingEvents } from '../data/events';
+---
+
+<Base title="Events & calendar" description="Everything happening at Horace Mann — PTSA events, meetings, and programs, always current, with one-tap calendar subscribe.">
+  <PageHero kicker="Events" title="What's coming up at Mann." dotgrid>
+    <p>
+      The calendar below is the live source of truth — kept current by real humans the moment
+      plans change. Subscribe once and every event lands on your phone automatically.
+    </p>
+  </PageHero>
+
+  <section class="mx-auto max-w-[1060px] px-6 py-12">
+    <div class="mb-8 flex flex-wrap gap-4">
+      <Button href="#[VERIFY-google-calendar-url]">Open live calendar</Button>
+      <Button href="#[VERIFY-ics-subscribe-url]" variant="white">Subscribe (Google / Apple / Outlook)</Button>
+    </div>
+
+    <h2 class="mb-6 font-display text-3xl font-extrabold">Next up</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      {upcomingEvents.map((e, i) => (
+        <EventCard date={e.date} title={e.title} tape={i === 1} tilt={i === 0 ? 'left' : i === 1 ? 'right' : 'none'}>
+          {e.description}
+        </EventCard>
+      ))}
+    </div>
+    <p class="mt-4 text-sm text-body-soft">
+      [BUILD NOTE: this list becomes a build-time render of the PTSA Google Calendar ICS feed —
+      wiring lands once the calendar URL is provided. Cancellations propagate within ~3 hours;
+      the live calendar link above is always exact.]
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-[1060px] px-6 pb-16">
+    <h2 class="mb-6 font-display text-3xl font-extrabold">The big ones every year</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {[
+        ['🎬', 'Movie Night', 'Fall + winter — field or gym, free popcorn energy.'],
+        ['🎨', 'Art Night & Auction', 'Kid art, silent auction, community showcase.'],
+        ['🧪', 'Science Fair', 'Spring — hypotheses, glitter, triumph.'],
+        ['🎪', 'The Carnival', 'June — the best night of the year, full stop.'],
+      ].map(([emoji, title, d]) => (
+        <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-6 shadow-sticker">
+          <span class="text-3xl">{emoji}</span>
+          <h3 class="mt-2 mb-1 font-display text-lg font-bold">{title}</h3>
+          <p class="text-sm text-body-soft">{d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,122 @@
+﻿var autoFieldCopyMap = new Array();
+var autoFieldManualOverrideMap = new Array();
+
+$(document).ready(function ()
+{
+    // This is the logic that automatically copies values from Parent 1 to Parent 2,
+    // so the user doesn't have to type as much.  But we don't copy values if the
+    // user has touched the field in Parent 2, or if there was a value already there.
+    autoFieldCopyMap['FamilyInfo_ParentOne_Address'] = 'FamilyInfo_ParentTwo_Address';
+    autoFieldCopyMap['FamilyInfo_ParentOne_City'] = 'FamilyInfo_ParentTwo_City';
+    autoFieldCopyMap['FamilyInfo_ParentOne_State'] = 'FamilyInfo_ParentTwo_State';
+    autoFieldCopyMap['FamilyInfo_ParentOne_ZipCode'] = 'FamilyInfo_ParentTwo_ZipCode';
+    autoFieldCopyMap['FamilyInfo_ParentOne_HomePhone'] = 'FamilyInfo_ParentTwo_HomePhone';
+
+    $(".StandardFormDiv input").each(function ()
+    {
+        if ($(this).val().length > 0)
+        {
+            autoFieldManualOverrideMap[this.id] = true;
+        }
+    });
+
+    familyInfoInputBlurHandler = function (inputBox)
+    {
+        if (autoFieldCopyMap[inputBox.id] == undefined)
+        {
+            return;
+        }
+
+        if (autoFieldManualOverrideMap[autoFieldCopyMap[inputBox.id]] == undefined)
+        {
+            $("#" + autoFieldCopyMap[inputBox.id]).val($(inputBox).val());
+        }
+    };
+
+    $(".StandardFormDiv input").blur(function ()
+    {
+        familyInfoInputBlurHandler(this);
+    });
+
+    $(".StandardFormDiv input").change(function ()
+    {
+        $("#NameAlreadyExistsErrorBox").hide();
+
+        autoFieldManualOverrideMap[this.id] = true;
+
+        familyInfoInputBlurHandler(this);
+    });
+
+    $(".StandardFormDiv #FamilyInfo_ParentOne_EmailAddress, .StandardFormDiv #FamilyInfo_ParentTwo_EmailAddress").change(function ()
+    {
+
+        var $textBox = $(this);
+
+        $.get
+        (
+            "/User/EmailAddressExists",
+            { emailAddress: $textBox.val() },
+            function (data)
+            {
+                if (data.Exists)
+                {
+                    $("#EmailAlreadyExistsErrorBox #EmailAddressSpan").text($textBox.val());
+                    displayPopup($("#EmailAlreadyExistsErrorBox"), $textBox, 180, -30);
+                }
+                else
+                {
+                    $("#EmailAlreadyExistsErrorBox").fadeOut('fast');
+                }
+            },
+            "json"
+        );
+    });
+
+    $(".StandardFormDiv #FamilyInfo_ParentOne_FirstName, .StandardFormDiv #FamilyInfo_ParentOne_LastName").change(function ()
+    {
+
+        var $lastNameTextBox = $(".StandardFormDiv #FamilyInfo_ParentOne_LastName");
+
+        var $firstName = $(".StandardFormDiv #FamilyInfo_ParentOne_FirstName").val();
+        var $lastName = $(".StandardFormDiv #FamilyInfo_ParentOne_LastName").val();
+
+        $.get
+        (
+            "/User/NameExists",
+            { firstName: $firstName, lastName: $lastName },
+            function (data)
+            {
+                if (data.Exists)
+                {
+                    $("#NameAlreadyExistsErrorBox #NameSpan").text($firstName + " " + $lastName);
+                    displayPopup($("#NameAlreadyExistsErrorBox"), $lastNameTextBox, 50, -160);
+                }
+            },
+            "json"
+        );
+    });
+
+    $(".StandardFormDiv #FamilyInfo_ParentTwo_FirstName, .StandardFormDiv #FamilyInfo_ParentTwo_LastName").change(function ()
+    {
+
+        var $lastNameTextBox = $(".StandardFormDiv #FamilyInfo_ParentTwo_LastName");
+
+        var $firstName = $(".StandardFormDiv #FamilyInfo_ParentTwo_FirstName").val();
+        var $lastName = $(".StandardFormDiv #FamilyInfo_ParentTwo_LastName").val();
+
+        $.get
+        (
+            "/User/NameExists",
+            { firstName: $firstName, lastName: $lastName },
+            function (data)
+            {
+                if (data.Exists)
+                {
+                    $("#NameAlreadyExistsErrorBox #NameSpan").text($firstName + " " + $lastName);
+                    displayPopup($("#NameAlreadyExistsErrorBox"), $lastNameTextBox, 10, -160);
+                }
+            },
+            "json"
+        );
+    });
+});

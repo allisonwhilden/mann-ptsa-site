@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const steps = [
+  {
+    t: 'PTSA vs. school — the one-paragraph version',
+    d: 'The school teaches; the PTSA is the parent-teacher community around it. We fund enrichment, run the big events, and connect families. We are a 501(c)(3) nonprofit run entirely by volunteers — joining supports it all, and joining never obligates you to volunteer.',
+  },
+  {
+    t: 'Join the PTSA (2 minutes)',
+    d: 'Membership is open to everyone — parents, guardians, grandparents, staff, neighbors — no matter your citizenship or residency status. Members can vote at meetings, get the WSPTA discount card, and get early access to after-school enrichment registration. [VERIFY perks]',
+  },
+  {
+    t: 'Get the newsletter',
+    d: 'Colt Connections lands twice a month with everything that matters: dates, signups, and what your kid will come home talking about.',
+  },
+  {
+    t: 'Find your people',
+    d: 'The member directory (opt-in) is how playdates and carpools happen. The Facebook group is where day-to-day chatter lives.',
+  },
+  {
+    t: 'Show up to one thing',
+    d: 'Back-to-School Night in September is the easy first step — find the PTSA table and say hi. Movie night is the second-easiest.',
+  },
+];
+
+const dates = [
+  ['September', 'Back-to-School Night · Colt Corral kickoff [VERIFY]'],
+  ['October', 'General membership meeting · directory opens [VERIFY]'],
+  ['Winter', 'Art Night · enrichment session 2 · Movie Night [VERIFY]'],
+  ['Spring', 'Science fair · book fair · auction [VERIFY]'],
+  ['June', 'The Carnival 🎪 — the best night of the year'],
+];
+---
+
+<Base title="New to Mann? Start here" description="A five-step map to Horace Mann Elementary's PTSA for new families: what it is, how to join, and the dates that matter.">
+  <PageHero kicker="New families" title="Welcome to the herd." dotgrid>
+    <p>
+      New school, new faces, a hundred acronyms. Here's the five-step map — you can do the whole
+      thing tonight.
+    </p>
+  </PageHero>
+
+  <section class="mx-auto max-w-[860px] px-6 py-12">
+    <ol class="space-y-6">
+      {steps.map((s, i) => (
+        <li class="relative rounded-(--radius-card) border-[3px] border-ink bg-white p-6 pl-20 shadow-sticker">
+          <span class="absolute left-5 top-5 grid h-11 w-11 place-items-center rounded-full border-[3px] border-ink bg-brand font-display text-lg font-extrabold text-white shadow-sticker-sm">
+            {i + 1}
+          </span>
+          <h2 class="mb-1.5 font-display text-xl font-bold">{s.t}</h2>
+          <p class="text-[15.5px] text-body-soft">{s.d}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <Button href={`${base}/join/`}>Join the PTSA</Button>
+      <Button href={`${base}/events/`} variant="white">See the calendar</Button>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[860px] px-6 pb-16">
+    <h2 class="mb-5 font-display text-3xl font-extrabold">The dates that matter</h2>
+    <div class="overflow-hidden rounded-(--radius-card) border-[3px] border-ink bg-white shadow-sticker">
+      {dates.map(([when, what], i) => (
+        <div class:list={['flex gap-6 px-6 py-4', i !== 0 && 'border-t-2 border-ink/10']}>
+          <span class="w-28 shrink-0 font-display font-extrabold text-brand-dark">{when}</span>
+          <span class="text-[15.5px] text-body-soft">{what}</span>
+        </div>
+      ))}
+    </div>
+    <p class="mt-4 text-sm text-body-soft">
+      Questions in any language? Email <a href="mailto:volunteers@mannptsa.org" class="font-bold text-brand-dark">volunteers@mannptsa.org</a> — we'll find a way to help. [VERIFY best contact]
+    </p>
+  </section>
+</Base>

@@ -1,0 +1,26 @@
+﻿.CalloutEventTitleDiv
+{
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.2em;
+	color: #3D6E92;
+}
+
+.CalloutEventLabelDiv
+{
+	float: left;
+	width: 45px;
+	font-weight: bold;
+	color: #404040;
+}
+
+.CalloutEventValueDiv
+{
+	margin-left: 50px;
+	color: #404040;
+}
+
+.CalloutEventDescriptionDiv
+{
+    color: #606060;
+}

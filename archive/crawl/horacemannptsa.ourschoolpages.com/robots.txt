@@ -1,0 +1,101 @@
+# Robots.txt file
+
+User-agent: Applebot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Bingbot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Discordbot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: facebookexternalhit
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Googlebot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Googlebot-Image
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: ia_archiver
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: LinkedInBot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: msnbot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Naverbot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Pinterestbot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: TelegramBot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Twitterbot
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Yandex
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: Yeti
+Allow: /
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*
+
+User-agent: *
+Disallow: /Packet/*/FamilyInfoPacketPage/
+Disallow: /Packet/*/GuestInfoPacketPage/
+Disallow: /Packet/*/SignInPacketPage/
+Disallow: /Account/LogOn
+Disallow: /Account/ForgotPassword
+allow: /Event/MonthCalendar$
+allow: /Event/MonthCalendar/$
+Disallow: /Event/MonthCalendar/*

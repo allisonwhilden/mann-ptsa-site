@@ -1,0 +1,139 @@
+﻿#NavigationBarDiv
+{
+	width: 150px; 
+	float: left;
+}
+
+#NavigationBarUserDiv
+{
+    border-radius: 20px;
+}
+
+#NavigationBarTopDiv
+{
+    background-image: url(../../../Images/Shared/NavigationBar/NavBackgroundTop.png);
+	background-repeat: no-repeat;
+	height: 18px;
+}
+
+#NavigationBarMiddleDiv
+{
+    background-image: url(../../../Images/Shared/NavigationBar/NavBackgroundMiddle.png);
+	background-repeat: repeat-y;
+	padding: 0px 8px;
+}
+
+#NavigationBarBottomDiv
+{
+    background-image: url(../../../Images/Shared/NavigationBar/NavBackgroundBottom.png);
+	background-repeat: no-repeat;
+	height: 18px;
+}
+
+.NavigationSubmenuTopDiv
+{
+    background-image: url(../../../Images/Shared/NavigationBar/NavSubmenuBackgroundTop.png);
+	background-repeat: no-repeat;
+	height: 18px;
+}
+
+.NavigationSubmenuMiddleDiv
+{
+    background-image: url(../../../Images/Shared/NavigationBar/NavSubmenuBackgroundMiddle.png);
+	background-repeat: repeat-y;
+	padding: 0px 15px;
+}
+
+.NavigationSubmenuBottomDiv
+{
+    background-image: url(../../../Images/Shared/NavigationBar/NavSubmenuBackgroundBottom.png);
+	background-repeat: no-repeat;
+	height: 18px;
+}
+
+#NavigationBarDiv a
+{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#NavigationBarDiv a:visited
+{
+	text-decoration: none;
+}
+
+#NavigationBarDiv img
+{
+	border-style: none;
+}
+
+#NavigationBarDiv .NavBarTextItem a,
+#NavigationBarDiv .NavigationSubmenuMiddleDiv div a
+{
+	display: block;
+	padding: 0px 5px;
+	text-align: center;
+    margin: 0px;
+}
+
+#NavigationBarDiv .NavBarIconItem img
+{
+    max-width: 124px;
+}
+
+#NavigationBarDiv .NavBarIconItem a
+{
+	display: block;
+	padding: 8px 0px;
+	text-align: center;
+    line-height: 1.1em;
+    margin: 0px 5px;
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 5px;
+}
+
+#NavigationBarDiv .NavBarIconItem a:hover
+{
+    border: 1px solid #808080;
+}
+
+#NavigationBarDiv .NavBarIconText
+{
+	font-family: Segoe UI, Candara, Bitstream Vera Sans, DejaVu Sans, Bitsream Vera Sans, Trebuchet MS, Verdana, Verdana Ref, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#NavigationBarDiv .NavigationSubmenuMiddleDiv div a
+{
+    text-align: left;
+    line-height: 1.4em;
+}
+
+.NavigationSubmenuDiv
+{
+	width: 191px;
+	position: absolute;
+	top: 0px;
+	left: 134px;
+	z-index: 100;
+	display: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#NavigationBarDiv hr
+{
+	border: none;
+	border-top: 1px solid #A0A0A0;
+}
+
+#NavigationBarMiddleDiv>div
+{
+	position: relative;
+}
+
+#PoweredByOspDiv
+{
+    margin-top:5px;
+}

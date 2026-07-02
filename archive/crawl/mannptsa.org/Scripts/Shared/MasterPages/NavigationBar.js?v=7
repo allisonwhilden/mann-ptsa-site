@@ -1,0 +1,65 @@
+﻿$(document).ready(function ()
+{
+    // For each top level image-based menu item in the nav bar
+    $("#NavigationBarMiddleDiv>div").each(function ()
+    {
+        // Special behavior for IE touch devices, where mouseenter/mouseleave events don't work.
+        if (window.navigator.msPointerEnabled && window.navigator.msMaxTouchPoints)
+        {
+            $(this).click(function ()
+            {
+                var $subMenu = $(this).find(".NavigationSubmenuDiv");
+
+                if ($subMenu.length)
+                {
+                    if (!$subMenu.is(":visible"))
+                    {
+                        // Hide all other submenus, and unbind all other clickoutside events.
+                        $(".NavigationSubmenuDiv").hide('fast');
+                        $("#NavigationBarMiddleDiv>div").unbind('clickoutside');
+
+                        $subMenu.show('fast');
+
+                        $(this).bind('clickoutside', function ()
+                        {
+                            $(this).unbind('clickoutside');
+                            $subMenu.hide('fast');
+                        });
+
+                        return false;
+                    }
+                }
+            });
+        }
+        else
+        {
+            // Set up the hover and non-hover events for the top level menu items.
+            $(this).mouseenter(function ()
+            {
+                $(this).find(".NavigationSubmenuDiv").show('fast');
+            }).mouseleave(function ()
+            {
+                $(this).find(".NavigationSubmenuDiv").hide('fast');
+            });
+        }
+    });
+
+    // Organize the DOM for the sub-menus by creating the necessary child divs, etc.
+    // for the top, middle, and bottom background images.
+    $(".NavigationSubmenuMiddleDiv").each(function ()
+    {
+        var numberOfSubmenuItems = $(this).children().length;
+
+        submenuParent = $(this).parent();
+        $(this).appendTo("<div class='NavigationSubmenuDiv'></div>");
+        $(this).parent().prepend("<div class='NavigationSubmenuTopDiv'></div>");
+        $(this).parent().append("<div class='NavigationSubmenuBottomDiv'></div>");
+        $(this).parent().appendTo(submenuParent);
+
+        $(this).parent().css('top', '-' + (numberOfSubmenuItems * 5) + 'px');
+    });
+
+    preLoadImages('/Images/Shared/NavigationBar/NavSubmenuBackgroundTop.png');
+    preLoadImages('/Images/Shared/NavigationBar/NavSubmenuBackgroundMiddle.png');
+    preLoadImages('/Images/Shared/NavigationBar/NavSubmenuBackgroundBottom.png');
+});

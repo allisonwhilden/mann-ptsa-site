@@ -1,18 +1,89 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Kicker from '../components/Kicker.astro';
+import EventCard from '../components/EventCard.astro';
+import Band from '../components/Band.astro';
+import Marquee from '../components/Marquee.astro';
+import Sticker from '../components/Sticker.astro';
+import { upcomingEvents } from '../data/events';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<Base title="Coming soon">
-  <main class="flex min-h-screen flex-col items-center justify-center gap-4 p-8 text-center">
-    <p class="text-sm font-semibold uppercase tracking-widest text-slate-500">
-      Horace Mann Elementary PTSA
-    </p>
-    <h1 class="max-w-xl text-4xl font-bold tracking-tight sm:text-5xl">
-      A new mannptsa.org is on its way.
-    </h1>
-    <p class="max-w-md text-lg text-slate-600">
-      We're building a faster, friendlier home for our Colts community —
-      launching for the 2026–27 school year.
-    </p>
-  </main>
+<Base title="Home">
+  <!-- Hero: the site's ONE sticker cluster lives here -->
+  <header class="dotgrid">
+    <div class="mx-auto grid max-w-[1060px] items-center gap-11 px-6 py-16 md:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <Kicker>🐴 Horace Mann Elementary · Redmond</Kicker>
+        <h1 class="mt-4 font-display text-5xl font-extrabold leading-[0.96] tracking-tight sm:text-7xl">
+          This year is going to be <span class="inline-block -rotate-[1.6deg] text-brand">so good.</span>
+        </h1>
+        <p class="mt-5 mb-7 max-w-[48ch] text-lg text-body">
+          Carnival. Movie nights. Art docents. Math challenges. It all happens because families
+          like yours chip in a little time — or just the price of a pizza.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <Button href={`${base}/join/`}>Join the PTSA</Button>
+          <Button href={`${base}/events/`} variant="white">What's coming up</Button>
+        </div>
+      </div>
+      <div class="relative hidden h-[340px] md:block" aria-hidden="true">
+        <Sticker shape="circle" color="red" rotate={-6} class="absolute left-[12%] top-[6%] w-44 p-4 text-[22px] leading-tight">EVERY COLT BELONGS</Sticker>
+        <Sticker shape="tile" color="peach" rotate={4} class="absolute left-[58%] top-[34%] w-28 text-[40px]">🐴</Sticker>
+        <Sticker shape="pill" rotate={-2} class="absolute left-[18%] top-[66%] px-6 py-3 text-base">est. Redmond, WA</Sticker>
+      </div>
+    </div>
+  </header>
+
+  <Marquee items={['JOIN FOR 2026–27', 'VOLUNTEERS WELCOME', 'GO COLTS', 'NEWSLETTER: COLT CONNECTIONS']} />
+
+  <!-- Seasonal slot: Aug–Oct this promotes New Families; later it swaps (design-for-decay) -->
+  <section class="mx-auto max-w-[1060px] px-6 pt-12">
+    <div class="flex flex-wrap items-center justify-between gap-4 rounded-(--radius-card) border-[3px] border-ink bg-peach p-6 shadow-sticker">
+      <p class="font-display text-xl font-bold">New to Mann? We made you a map. 🗺️</p>
+      <Button href={`${base}/start-here/`} variant="ink">Start here</Button>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1060px] px-6 py-12">
+    <div class="mb-6 flex items-baseline justify-between">
+      <h2 class="font-display text-3xl font-extrabold">Coming up</h2>
+      <a href={`${base}/events/`} class="font-extrabold text-brand-dark no-underline">Full calendar →</a>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      {upcomingEvents.map((e, i) => (
+        <EventCard date={e.date} title={e.title} href={`${base}/events/`} tape={i === 1} tilt={i === 0 ? 'left' : i === 1 ? 'right' : 'none'}>
+          {e.description}
+        </EventCard>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1060px] px-6 pb-12">
+    <Band>
+      <Fragment slot="title">Be a Colt. It's $[VERIFY] a year.</Fragment>
+      Two minutes to join. A whole year of classroom grants, free events, and “I know that family!”
+      moments. Memberships fund it all.
+      <Button slot="action" href={`${base}/join/`} variant="white">Join now</Button>
+    </Band>
+  </section>
+
+  <!-- What your membership does: three proof points -->
+  <section class="mx-auto max-w-[1060px] px-6 pb-16">
+    <h2 class="mb-6 font-display text-3xl font-extrabold">Where the energy goes</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      {[
+        { t: 'Programs kids love', d: 'After-school enrichment, choir, band and orchestra, art docents, Math Challenge, science fair, Reflections.' },
+        { t: 'Events without admission fees', d: 'Movie nights, Art Night, the June carnival — built so every family can come.' },
+        { t: 'Direct classroom support', d: 'Classroom grants, staff appreciation, birthday books, and a yearbook for every Colt. [VERIFY highlights]' },
+      ].map((x) => (
+        <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-6 shadow-sticker">
+          <h3 class="mb-2 font-display text-lg font-bold">{x.t}</h3>
+          <p class="text-[15px] text-body-soft">{x.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
 </Base>

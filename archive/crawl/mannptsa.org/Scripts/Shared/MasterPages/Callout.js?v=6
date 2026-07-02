@@ -1,0 +1,6 @@
+﻿$(document).ready(function ()
+{
+    preLoadImages("/Images/Shared/Callout/CalloutTop.png");
+    preLoadImages("/Images/Shared/Callout/CalloutMiddle.png");
+    preLoadImages("/Images/Shared/Callout/CalloutBottom.png");
+});

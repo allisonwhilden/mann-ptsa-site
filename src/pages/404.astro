@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Sticker from '../components/Sticker.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  ['Join the PTSA', '/join/'],
+  ['Events & calendar', '/events/'],
+  ['Volunteer', '/volunteer/'],
+  ['Give', '/give/'],
+  ['Directory', '/directory/'],
+  ['About & contact', '/about/'],
+];
+---
+
+<Base title="Page not found">
+  <div class="dotgrid">
+    <div class="mx-auto max-w-[860px] px-6 py-20 text-center">
+      <div class="mb-8 flex justify-center">
+        <Sticker shape="circle" color="red" rotate={-6} class="w-36 p-4 text-xl leading-tight">LOOSE COLT!</Sticker>
+      </div>
+      <h1 class="mb-3 font-display text-5xl font-extrabold">This page ran off.</h1>
+      <p class="mx-auto mb-8 max-w-[46ch] text-lg text-body">
+        The website got a big rebuild in 2026, so old links may have moved. Everything still
+        exists — it's just somewhere better now.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        {links.map(([label, href]) => (
+          <Button href={`${base}${href}`} variant="white">{label}</Button>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>

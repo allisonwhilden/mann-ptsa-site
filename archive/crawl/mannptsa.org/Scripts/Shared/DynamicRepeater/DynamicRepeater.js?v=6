@@ -1,0 +1,194 @@
+﻿function InitializeDynamicRepeater(scope)
+{
+    var enableDisableAllUpDownButtons = function ()
+    {
+        $(".RepeaterMoveUpButton").css('visibility', 'hidden');
+        $(".RepeaterMoveDownButton").css('visibility', 'hidden');
+
+        $(".RepeaterDiv").each(function ()
+        {
+            $(this)
+            .children(".RepeaterCellDiv")
+            .first()
+            .siblings()
+            .children(".RepeaterRowButtonsDiv")
+            .find(".RepeaterMoveUpButton")
+            .css('visibility', 'visible');
+        });
+
+        $(".RepeaterDiv").each(function ()
+        {
+            $(this)
+            .children(".RepeaterCellDiv")
+            .last()
+            .siblings()
+            .children(".RepeaterRowButtonsDiv")
+            .find(".RepeaterMoveDownButton")
+            .css('visibility', 'visible');
+        });
+    };
+
+    var assignNumber = function ($that, i)
+    {
+        $that.find("input, select, textarea").each(function ()
+        {
+            var origName = $(this).attr("name");
+
+            if (origName)
+            {
+                // Take care to just replace the *first* instance of Items[x]
+                var newName = origName.replace(/Items\[x\]/, "Items[" + i + "]");
+                $(this).attr("name", newName);
+            }
+        });
+    }
+
+    var renumberAllItems = function ()
+    {
+        // First reset every Items[n] to just Items[x], so later we know exactly which have 
+        // been properly replaced and which haven't.  Important for nested repeaters.
+        $(".RepeaterDiv input, .RepeaterDiv select, .RepeaterDiv textarea").each(function ()
+        {
+            var origName = $(this).attr("name");
+
+            if (origName)
+            {
+                var newName = origName.replace(/Items\[\d+\]/g, "Items[x]");
+                $(this).attr("name", newName);
+            }
+        });
+
+        // Now we actually replace the Items[x] with the appropriately numbered Items[n].
+        $(".RepeaterDiv").each(function ()
+        {
+            var i = 0;
+            $(this).children().each(function ()
+            {
+                assignNumber($(this), i);
+                i = i + 1;
+            });
+        });
+    };
+
+    enableDisableAllUpDownButtons();
+
+    var numberOfAddsSoFar = 10000;
+
+    $(".RepeaterAddButton", scope).each(function ()
+    {
+        // Make sure we're not inside a repeater template.
+        if ($(this).parents(".RepeaterTemplateDiv").length > 0)
+        {
+            return;
+        }
+
+        $(this).click(function ()
+        {
+            var $repeaterTemplate = $(this).parent().prevAll(".RepeaterTemplateDiv");
+            var $repeaterDiv = $(this).parent().prevAll(".RepeaterDiv");
+
+            var $newStudent = $repeaterTemplate.children().clone(true).hide().appendTo($repeaterDiv);
+
+            $newStudent.slideDown("fast", function ()
+            {
+                // Force a redraw, esp. in IE.
+                $repeaterDiv.hide();
+                $repeaterDiv.show();
+
+                // Run all document.ready functionality (the same functionality we run when a page
+                // first gets loaded in the browser) on the newly cloned elements.
+                InitializeAll($(this));
+
+                assignNumber($newStudent, numberOfAddsSoFar);
+                numberOfAddsSoFar++;
+
+                enableDisableAllUpDownButtons();
+            });
+
+            return false;
+        });
+    });
+
+    $(".RepeaterDeleteButton", scope).click(function ()
+    {
+        var $studentToDelete = $(this).parents(".RepeaterCellDiv").first();
+
+        $studentToDelete.slideUp("fast", function ()
+        {
+            var $repeaterDiv = $(this).parent();
+
+            $(this).remove();
+
+            // Force a redraw, esp. in IE.
+            $repeaterDiv.hide();
+            $repeaterDiv.show();
+
+            enableDisableAllUpDownButtons();
+        });
+
+        return false;
+    });
+
+    $(".RepeaterMoveUpButton", scope).each(function ()
+    {
+        // Make sure we're not inside a repeater template.
+        if ($(this).parents(".RepeaterTemplateDiv").length > 0)
+        {
+            return;
+        }
+
+        $(this).click(function ()
+        {
+            var $repeaterCellToMove = $(this).parents(".RepeaterCellDiv").first();
+            var $previousCell = $repeaterCellToMove.prev();
+
+            if ($previousCell.length > 0)
+            {
+                $repeaterCellToMove.slideUp("fast", function ()
+                {
+                    $repeaterCellToMove.insertBefore($previousCell);
+                    $repeaterCellToMove.slideDown("fast");
+
+                    enableDisableAllUpDownButtons();
+                });
+            }
+
+            return false;
+        });
+    });
+
+    $(".RepeaterMoveDownButton", scope).each(function ()
+    {
+        // Make sure we're not inside a repeater template.
+        if ($(this).parents(".RepeaterTemplateDiv").length > 0)
+        {
+            return;
+        }
+
+        $(this).click(function ()
+        {
+            var $repeaterCellToMove = $(this).parents(".RepeaterCellDiv").first();
+            var $nextCell = $repeaterCellToMove.next();
+
+            if ($nextCell.length > 0)
+            {
+                $repeaterCellToMove.slideUp("fast", function ()
+                {
+                    $repeaterCellToMove.insertAfter($nextCell);
+                    $repeaterCellToMove.slideDown("fast");
+
+                    enableDisableAllUpDownButtons();
+                });
+            }
+
+            return false;
+        });
+    });
+
+    $(".SubmitButton", scope).click(function ()
+    {
+        $(".SubmitButton").css('visibility', 'hidden');
+        renumberAllItems();
+        return true;
+    });
+}

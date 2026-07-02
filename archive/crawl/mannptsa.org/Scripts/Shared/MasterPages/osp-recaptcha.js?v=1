@@ -1,0 +1,35 @@
+﻿var ospReCaptchaReady = false;
+var ospReCaptchaSitekeyV2 = $("#osp-recaptcha-submit").attr("data-sitekeyv2");
+var ospReCaptchaSitekeyV3 = $("#osp-recaptcha-submit").attr("data-sitekeyv3");
+var ospReCaptchaAction = $("#osp-recaptcha-submit").attr("data-action");
+var ospReCaptchaEle = $("#osp-recaptcha-ele");
+var ospReCaptchaSubmit = $("#osp-recaptcha-submit");
+var ospReCaptchaWidget;
+
+grecaptcha.ready(function () {
+    if (ospReCaptchaEle && ospReCaptchaEle.length) {
+        ospReCaptchaWidget = grecaptcha.render('osp-recaptcha-ele', {
+            'sitekey': ospReCaptchaSitekeyV2,
+            'callback': function () {
+                ospReCaptchaSubmit.prop('disabled', false)
+            },
+            'expired-callback': function () {
+                ospReCaptchaSubmit.prop('disabled', true)
+            }
+        });
+    } else {
+        ospReCaptchaSubmit.prop('disabled', false)
+    }
+});
+
+function onReCaptchaFormClick(e) {
+    e.preventDefault();
+    grecaptcha.execute(ospReCaptchaSitekeyV3, { action: ospReCaptchaAction }).then(function (token) {
+        if (ospReCaptchaWidget === 0 || ospReCaptchaWidget) {
+            document.getElementById("recaptchaV2-response").value = grecaptcha.getResponse(ospReCaptchaWidget);
+        }
+        document.getElementById("recaptchaV3-response").value = token;
+        document.getElementById("osp-recaptcha-form").submit();
+    });
+    return false;
+}

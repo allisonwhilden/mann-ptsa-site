@@ -1,0 +1,103 @@
+﻿.CalendarTable
+{
+	border: solid 1px #E8EEF4;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.CalendarTable .DayOfWeekRow
+{
+	color: White;
+}
+
+.CalendarTable .DayOfWeekRow th
+{
+	padding: 6px 5px;
+	background-color: #3D6E92;
+	width: 14%;
+	text-align: center;
+	border: solid 1px #3D6E92;   
+	font-size: 12px;
+	line-height: 1.3em;
+}
+
+.CalendarTable .DateRow td
+{
+	background-color: #E8EEF4;
+	width: 14%;
+	border: solid 1px #B6C5EA;
+	font-size: 12px;
+	line-height: 1.3em;
+}
+
+.CalendarTable .DateRow td div
+{
+	padding: 4px 0px;   
+    float: right;
+}
+
+.CalendarTable .DateRow td a
+{
+    float: left;
+    margin-top: 3px;
+	color: #606060;
+	background-color: #F0F0F0;
+	border: 1px solid #A0A0A0;
+	height: 15px;
+    padding: 0px 3px;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: normal;
+    display: none;
+}
+
+.CalendarTable .DateRow td a:hover
+{
+	background-color: #E0E0E0;
+}
+
+.CalendarTable .EventsRow td
+{
+	padding: 4px;   
+	width: 14%;
+	height: 60px;
+	vertical-align: top;
+	border: solid 1px #B6C5EA;
+
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+	line-height: 1.3em;
+}
+
+.CalendarTable .EventsRow td>hr
+{
+	margin: 3px 0px;
+	padding: 0px;
+	border: none;
+	border-top: 1px solid #E8EEF4;
+}
+
+.CalendarTable .EventsRow .AllDayEvent
+{
+	background-color: #F0F0F0;
+	border: 1px solid #606060;
+	padding: 1px 2px;
+	margin-bottom: 1px;
+	cursor: default;
+}
+
+.CalendarTable .EventsRow .TimeEvent
+{
+	cursor: default;
+}
+
+.CalendarTable .EventsRow .EventHover
+{
+	color: black;
+	background-color: #E0E0E0;
+}
+
+.CalendarTable .Today
+{
+	background-color: #F8E9FF;
+}

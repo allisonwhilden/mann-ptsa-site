@@ -1,0 +1,101 @@
+---
+import Base from '../../layouts/Base.astro';
+import Button from '../../components/Button.astro';
+import Kicker from '../../components/Kicker.astro';
+import EventCard from '../../components/EventCard.astro';
+import Band from '../../components/Band.astro';
+import Marquee from '../../components/Marquee.astro';
+import Sticker from '../../components/Sticker.astro';
+
+const swatches = [
+  { name: 'brand', hex: '#EF3E36', cls: 'bg-brand text-white' },
+  { name: 'brand-dark', hex: '#C22B24', cls: 'bg-brand-dark text-white' },
+  { name: 'ink', hex: '#141414', cls: 'bg-ink text-white' },
+  { name: 'peach', hex: '#FFE8D6', cls: 'bg-peach text-ink' },
+  { name: 'paper', hex: '#FFF8F2', cls: 'bg-paper text-ink border-2 border-ink/10' },
+];
+---
+
+<Base title="Design system" description="Living style guide for the Mann PTSA site.">
+  <div class="mx-auto max-w-[1060px] px-6 py-12">
+    <Kicker>Design system v1 · direction G</Kicker>
+    <h1 class="mt-4 mb-2 font-display text-5xl font-extrabold">Colt Energy, refined.</h1>
+    <p class="mb-12 max-w-[60ch] text-lg text-body">
+      Every component on the site lives on this page. If a new page needs something that isn't here,
+      add it here first. Rules of restraint: one sticker cluster per site (Home hero), one tape accent
+      per view, dot-grid on at most one section per page, one red Band per page.
+    </p>
+
+    <h2 class="mb-4 font-display text-3xl font-extrabold">Color</h2>
+    <div class="mb-12 flex flex-wrap gap-3">
+      {swatches.map((s) => (
+        <div class:list={['flex h-24 w-28 flex-col justify-end rounded-(--radius-card) border-[3px] border-ink p-2 shadow-sticker-sm', s.cls]}>
+          <span class="text-xs font-extrabold">{s.name}</span>
+          <span class="text-[10.5px]">{s.hex}</span>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mb-4 font-display text-3xl font-extrabold">Type</h2>
+    <div class="mb-12 space-y-3">
+      <p class="font-display text-6xl font-extrabold leading-none">Bricolage Grotesque</p>
+      <p class="font-display text-2xl font-bold">Subheads carry the same voice at lower volume.</p>
+      <p class="max-w-[60ch] text-body">
+        Inter for body text — sturdy and readable at small sizes on a phone in the car line. Body
+        text never sits on the red; on dark bands it uses the warm tints.
+      </p>
+    </div>
+
+    <h2 class="mb-4 font-display text-3xl font-extrabold">Buttons</h2>
+    <div class="mb-12 flex flex-wrap items-center gap-5">
+      <Button href="#">Primary action</Button>
+      <Button href="#" variant="white">Secondary</Button>
+      <Button href="#" variant="ink">On light sections</Button>
+    </div>
+
+    <h2 class="mb-4 font-display text-3xl font-extrabold">Stickers</h2>
+    <div class="mb-12 flex flex-wrap items-center gap-8">
+      <Sticker shape="circle" color="red" rotate={-6} class="w-36 p-4 text-lg leading-tight">EVERY COLT BELONGS</Sticker>
+      <Sticker shape="tile" color="peach" rotate={4} class="w-24 text-4xl">🐴</Sticker>
+      <Sticker shape="pill" rotate={-2} class="px-6 py-3 text-base">est. Redmond, WA</Sticker>
+    </div>
+
+    <h2 class="mb-4 font-display text-3xl font-extrabold">Event cards</h2>
+    <div class="mb-12 grid gap-6 md:grid-cols-3">
+      <EventCard date="TUE · SEP 15" title="Back-to-School Night" href="#" tilt="left">
+        Meet your teachers, find your people. PTSA table by the gym doors.
+      </EventCard>
+      <EventCard date="FRI · SEP 25" title="Movie Night on the Field" href="#" tape tilt="right">
+        Blankets, popcorn, and a family favorite under the stars.
+      </EventCard>
+      <EventCard date="THU · OCT 22" title="Membership Meeting" href="#">
+        Library + Zoom, 6:00 pm. Childcare provided. Kids welcome.
+      </EventCard>
+    </div>
+
+    <h2 class="mb-4 font-display text-3xl font-extrabold">Announcement ribbon</h2>
+  </div>
+  <div class="mb-12">
+    <Marquee items={['JOIN THE PTSA', 'MOVIE NIGHT SEP 25', 'VOLUNTEERS WELCOME', 'GO COLTS']} />
+  </div>
+  <div class="mx-auto max-w-[1060px] px-6 pb-12">
+    <h2 class="mb-4 font-display text-3xl font-extrabold">CTA band</h2>
+    <Band>
+      <Fragment slot="title">Be a Colt. It's $15.</Fragment>
+      Two minutes to join. A whole year of classroom grants, free events, and “I know that family!” moments.
+      <Button slot="action" href="#" variant="white">Join now</Button>
+    </Band>
+
+    <h2 class="mt-12 mb-4 font-display text-3xl font-extrabold">Empty / stale states</h2>
+    <p class="mb-4 max-w-[60ch] text-body">
+      Modules must look intentional when content runs out (the February test): news older than six
+      weeks auto-hides; this evergreen card takes its place.
+    </p>
+    <div class="max-w-md rounded-(--radius-card) border-[3px] border-dashed border-ink/40 bg-white p-6">
+      <h3 class="mb-1 font-display text-lg font-bold">It's quiet right now 🐴</h3>
+      <p class="text-sm text-body-soft">
+        Between events? The calendar is always current, and the newsletter lands twice a month.
+      </p>
+    </div>
+  </div>
+</Base>
