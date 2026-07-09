@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Rebuild ~4x/day so calendar-feed changes propagate (PLAN §2 Calendar).
+    # GitHub disables schedules after 60 idle days; the keepalive step below
+    # prevents that. If events ever look stale: Actions tab → Run workflow.
+    - cron: '13 3,9,15,21 * * *'
 
 permissions:
   contents: read
@@ -32,6 +37,11 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+      # Prevents GitHub from auto-disabling the scheduled rebuild after 60
+      # quiet days (uses API activity, no dummy commits).
+      - uses: gautamkrishnar/keepalive-workflow@v2
+        with:
+          use_api: true
 
   deploy:
     if: github.ref == 'refs/heads/main'

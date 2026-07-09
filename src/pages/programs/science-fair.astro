@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+
+const schedule = [
+  ['4:30 pm', 'Volunteers set up'],
+  ['5:00 pm', 'Food truck arrives'],
+  ['5:30 pm', 'Project check-in'],
+  ['6:15 pm', 'K–1 present'],
+  ['6:30 pm', 'Grades 2–3 present'],
+  ['7:00 pm', 'Grades 4–5 present'],
+  ['7:45 pm', 'Awards 🏅'],
+];
+---
+
+<Base title="Science Fair" description="The Horace Mann Science Fair: every student can present a project, solo or with a partner, one big February evening.">
+  <PageHero kicker="Programs · Science Fair" title="Hypotheses, glitter, triumph." dotgrid>
+    <p>
+      One February evening, the school fills with experiments. <b>Every student</b> is invited to
+      present a project — solo or with a partner. Not sure about your project yet? Register
+      anyway; you can update details later.
+    </p>
+  </PageHero>
+
+  <section class="mx-auto max-w-[860px] px-6 py-12">
+    <div class="mb-8 flex flex-wrap gap-4">
+      <Button href="#[VERIFY-sciencefair-registration-url]">Register a project</Button>
+      <Button href="#[VERIFY-signup-url]" variant="white">Volunteer at the fair</Button>
+    </div>
+    <p class="mb-8 text-[15.5px] text-body-soft">
+      Next fair: <b>[VERIFY 2027 date]</b> (typically late February, 6–8 pm; registration closes
+      about a week before). Reviewers visit every project — make an “ask me these questions”
+      sheet for your board and enjoy the spotlight.
+    </p>
+
+    <h2 class="mb-5 font-display text-3xl font-extrabold">How the evening runs</h2>
+    <div class="overflow-hidden rounded-(--radius-card) border-[3px] border-ink bg-white shadow-sticker">
+      {schedule.map(([t, what], i) => (
+        <div class:list={['flex gap-6 px-6 py-3.5', i !== 0 && 'border-t-2 border-ink/10']}>
+          <span class="w-20 shrink-0 font-display font-extrabold text-brand-dark">{t}</span>
+          <span class="text-[15.5px] text-body-soft">{what}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

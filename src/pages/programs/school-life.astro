@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const items = [
+  {
+    emoji: '📖',
+    title: 'Yearbook',
+    body: 'Order at shop.yearbookmarket.com [VERIFY 2026–27 link]. Families upload classroom and event photos all year — the yearbook team sorts them by classroom/event folders. Questions or want to help: yearbook@mannptsa.org.',
+  },
+  {
+    emoji: '👕',
+    title: 'Spirit wear',
+    body: 'Colts gear sales run as seasonal campaigns (typically fall, delivered around Thanksgiving). Between campaigns the shop is closed — the newsletter announces each sale.',
+  },
+  {
+    emoji: '🎂',
+    title: 'Birthday Book Club',
+    body: 'Donate a book to the school library in your child’s name for their birthday — their name goes in the bookplate and they get first checkout. A small gift that outlasts cupcakes. [VERIFY current price + signup]',
+  },
+  {
+    emoji: '💐',
+    title: 'Staff appreciation (Hospitality)',
+    body: 'Monthly staff-appreciation events plus the big Staff Appreciation Week each May — gratitude walls, community dessert spreads, and the beloved Staff Favorite Things list families can browse for teacher gifts.',
+  },
+];
+---
+
+<Base title="School life" description="Yearbook, spirit wear, Birthday Book Club, and staff appreciation — the Horace Mann PTSA programs that make school feel like home.">
+  <PageHero kicker="Programs · School life" title="The little things that make it Mann." dotgrid>
+    <p>
+      Not every program is a class or a contest — these are the traditions that make the school
+      feel like a community.
+    </p>
+  </PageHero>
+
+  <section class="mx-auto max-w-[860px] px-6 py-12">
+    <div class="space-y-6">
+      {items.map((x) => (
+        <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-7 shadow-sticker">
+          <h2 class="mb-2 font-display text-2xl font-extrabold"><span aria-hidden="true">{x.emoji}</span> {x.title}</h2>
+          <p class="text-[15.5px] text-body-soft">{x.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

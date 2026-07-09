@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const specials = [
+  ['Reflections', 'The national PTA arts competition — students create original art inspired by each year’s theme.'],
+  ['Northwest Art Project', 'Themed collections of Northwest art exhibited at school, presented by the Junior League of Seattle.'],
+  ['Artist in Residence', 'Fifth graders work directly with a local artist on a culminating project.'],
+  ['Art Night', 'The whole school’s art on display, one big evening every year.'],
+];
+---
+
+<Base title="Art program" description="The Horace Mann PTSA art program: volunteer art docents in every classroom, kiln projects, Reflections, and the Northwest Art Project.">
+  <PageHero kicker="Programs · Art" title="Every kid makes art here." dotgrid>
+    <p>
+      The PTSA sponsors art education for <b>all</b> students — supplies, training, lessons, and
+      the special programs below. It's one of the biggest things your membership pays for.
+    </p>
+  </PageHero>
+
+  <section class="mx-auto max-w-[860px] px-6 py-12">
+    <div class="space-y-6">
+      <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-7 shadow-sticker">
+        <h2 class="mb-2 font-display text-2xl font-extrabold">Art Docents</h2>
+        <p class="text-[15.5px] text-body-soft">
+          Volunteer-led art lessons right in the classroom: techniques, mediums, famous works and
+          artists — building observational skills, fine-motor skills, and cultural awareness.
+          <b>No art background needed to become a docent</b> — training and materials are provided.
+          Email <a href="mailto:volunteers@mannptsa.org" class="font-bold text-brand-dark">volunteers@mannptsa.org</a> to try it.
+        </p>
+      </div>
+      <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-7 shadow-sticker">
+        <h2 class="mb-2 font-display text-2xl font-extrabold">Kiln projects 🏺</h2>
+        <p class="text-[15.5px] text-body-soft">
+          Yes, the school has a kiln. By fifth grade every student has worked in the three major
+          clay hand-building techniques — slab, pinching, and coiling — with volunteer kiln
+          coordinators shepherding each piece through forming, firing, and glazing.
+        </p>
+      </div>
+      <div class="rounded-(--radius-card) border-[3px] border-ink bg-white p-7 shadow-sticker">
+        <h2 class="mb-3 font-display text-2xl font-extrabold">Special programs</h2>
+        <ul class="space-y-3">
+          {specials.map(([t, d]) => (
+            <li class="flex gap-3 text-[15.5px] text-body-soft">
+              <span class="mt-0.5 font-extrabold text-brand">★</span>
+              <span><b>{t}.</b> {d}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
