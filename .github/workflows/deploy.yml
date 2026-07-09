@@ -14,6 +14,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write # keepalive step re-enables this workflow to reset GitHub's 60-day schedule-disable timer
 
 concurrency:
   group: pages
@@ -38,10 +39,15 @@ jobs:
         with:
           path: dist
       # Prevents GitHub from auto-disabling the scheduled rebuild after 60
-      # quiet days (uses API activity, no dummy commits).
-      - uses: gautamkrishnar/keepalive-workflow@v2
-        with:
-          use_api: true
+      # quiet days: re-enabling the workflow via API resets the idle timer.
+      # (Inline curl instead of a marketplace action — this repo's Actions
+      # policy only allows GitHub-authored actions.)
+      - name: Keepalive
+        run: |
+          curl -sS -o /dev/null -X PUT \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy.yml/enable"
 
   deploy:
     if: github.ref == 'refs/heads/main'
